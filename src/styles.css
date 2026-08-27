@@ -74,6 +74,7 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
   --ring: oklch(0.79 0.14 84);
+  --erlc: oklch(0.72 0.17 235);
 
   --gradient-gold: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold-soft) 45%, var(--gold-deep) 100%);
   --gradient-metal: linear-gradient(160deg, oklch(1 0 0) 0%, oklch(0.82 0.005 260) 50%, oklch(0.95 0.003 260) 100%);
