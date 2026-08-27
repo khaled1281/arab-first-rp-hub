@@ -16,6 +16,7 @@ import {
 import logo from "@/assets/af-logo.png.asset.json";
 import { useLang, DISCORD_URL } from "@/lib/i18n";
 import { Reveal } from "@/components/site/Reveal";
+import { BackgroundSlideshow } from "@/components/site/BackgroundSlideshow";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -45,6 +46,7 @@ function Index() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
+      <BackgroundSlideshow />
       <div className="pointer-events-none absolute inset-0 grid-bg" aria-hidden="true" />
       <div className="glow-orb left-[-10%] top-[-8%] h-[420px] w-[420px] bg-gold" aria-hidden="true" />
       <div className="glow-orb right-[-12%] top-[35%] h-[380px] w-[380px] bg-gold-deep" aria-hidden="true" />
@@ -54,8 +56,8 @@ function Index() {
         <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
           <a href="#top" className="flex items-center gap-2.5">
             <img src={logo.url} alt="Arab First RP" className="h-9 w-9 object-contain" />
-            <span className="font-display text-sm font-bold tracking-[0.18em] text-gold-gradient">
-              ARAB FIRST RP
+            <span className="font-brand text-base tracking-[0.16em] text-gold-gradient">
+              ARAB FIRST <span className="font-tech text-xs text-erlc">RP</span>
             </span>
           </a>
 
@@ -104,10 +106,16 @@ function Index() {
               {t(dict.hero.badge)}
             </span>
 
-            <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-              <span className="shine-text">ARAB FIRST</span>
-              <br />
-              <span className="text-metal-gradient">RP</span>
+            <h1 className="mt-6 leading-[0.95]">
+              <span className="shine-text block font-brand text-6xl tracking-[0.02em] sm:text-7xl lg:text-8xl">
+                ARAB FIRST
+              </span>
+              <span className="text-metal-gradient block font-brand text-5xl tracking-[0.35em] sm:text-6xl">
+                RP
+              </span>
+              <span className="text-erlc-gradient mt-3 block font-tech text-lg font-black tracking-[0.5em] sm:text-xl">
+                ERLC
+              </span>
             </h1>
 
             <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted-foreground md:mx-0">
@@ -264,8 +272,8 @@ function Index() {
       <footer className="border-t border-border/60 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 text-center">
           <img src={logo.url} alt="Arab First RP" className="h-10 w-10 object-contain" />
-          <p className="font-display text-sm font-bold tracking-[0.2em] text-gold-gradient">
-            ARAB FIRST RP
+          <p className="font-brand text-lg tracking-[0.18em] text-gold-gradient">
+            ARAB FIRST <span className="font-tech text-sm text-erlc">RP</span>
           </p>
           <p className="text-xs text-muted-foreground">
             EST. 2025 · {t(dict.footer.dev)} : n16q

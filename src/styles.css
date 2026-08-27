@@ -41,7 +41,11 @@
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --font-display: "Space Grotesk", "Cairo", sans-serif;
-  --font-sans: "Cairo", "Space Grotesk", sans-serif;
+  --font-sans: "Tajawal", "Cairo", "Space Grotesk", sans-serif;
+  --font-brand: "Anton", "Rakkas", sans-serif;
+  --font-tech: "Orbitron", "Space Grotesk", sans-serif;
+  --font-arabic-display: "Rakkas", "Cairo", serif;
+  --color-erlc: var(--erlc);
 }
 
 :root {
@@ -70,6 +74,7 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
   --ring: oklch(0.79 0.14 84);
+  --erlc: oklch(0.72 0.17 235);
 
   --gradient-gold: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold-soft) 45%, var(--gold-deep) 100%);
   --gradient-metal: linear-gradient(160deg, oklch(1 0 0) 0%, oklch(0.82 0.005 260) 50%, oklch(0.95 0.003 260) 100%);
@@ -212,4 +217,12 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+@utility text-erlc-gradient {
+  background: linear-gradient(120deg, var(--erlc), oklch(0.88 0.09 220), var(--erlc));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 34px color-mix(in oklab, var(--erlc) 45%, transparent);
 }
