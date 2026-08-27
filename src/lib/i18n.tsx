@@ -1,0 +1,92 @@
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+
+export type Lang = "ar" | "en";
+
+const dict = {
+  nav: { home: ["الرئيسية", "Home"], about: ["عن السيرفر", "About"], features: ["المميزات", "Features"], rules: ["القوانين", "Rules"], departments: ["الأقسام", "Departments"], join: ["انضم إلينا", "Join"] },
+  hero: {
+    badge: ["سيرفر رول بلاي عربي · ERLC Roblox", "Arabic Roleplay Server · ERLC Roblox"],
+    title: ["ARAB FIRST RP", "ARAB FIRST RP"],
+    sub: [
+      "أول تجربة رول بلاي عربية احترافية داخل Emergency Response: Liberty County. واقعية، انضباط، ومجتمع عربي متكامل.",
+      "The premier Arabic roleplay experience inside Emergency Response: Liberty County. Realism, discipline, and a full Arabic community.",
+    ],
+    cta: ["انضم إلى الديسكورد", "Join Discord"],
+    cta2: ["اكتشف المزيد", "Explore more"],
+  },
+  stats: [
+    { v: "2025", l: ["سنة التأسيس", "Established"] },
+    { v: "ERLC", l: ["منصة اللعب", "Platform"] },
+    { v: "24/7", l: ["السيرفر يعمل", "Server uptime"] },
+    { v: "AR", l: ["مجتمع عربي", "Arabic community"] },
+  ],
+  about: {
+    k: ["عن السيرفر", "About us"],
+    t: ["رول بلاي عربي بمعايير عالمية", "Arabic roleplay, global standards"],
+    p: [
+      "Arab First RP هو سيرفر رول بلاي عربي داخل لعبة ERLC على روبلوكس، تأسس عام 2025. نقدّم تجربة واقعية منظمة بإدارة عربية محترفة، مع أقسام شرطة وإسعاف وإطفاء ومدنيين، وقوانين واضحة تضمن جودة اللعب للجميع.",
+      "Arab First RP is an Arabic roleplay server on ERLC (Roblox), founded in 2025. We deliver a realistic, well-structured experience run by a professional Arabic staff team, with police, EMS, fire and civilian divisions, plus clear rules that keep the quality high for everyone.",
+    ],
+  },
+  features: {
+    k: ["المميزات", "Features"],
+    t: ["لماذا Arab First RP؟", "Why Arab First RP?"],
+    items: [
+      { t: ["واقعية عالية", "High realism"], d: ["سيناريوهات ودوريات مبنية على قواعد واقعية ومنطقية.", "Scenarios and patrols built on realistic, logical standards."] },
+      { t: ["إدارة نشطة", "Active staff"], d: ["فريق إداري متواجد على مدار الساعة لحل البلاغات بسرعة.", "A staff team available around the clock to handle reports fast."] },
+      { t: ["تدريب رسمي", "Official training"], d: ["دورات تدريب لكل قسم قبل الانضمام للخدمة الفعلية.", "Training courses for every department before active duty."] },
+      { t: ["مجتمع محترم", "Respectful community"], d: ["بيئة عربية خالية من السُمية والإساءة بكل أشكالها.", "An Arabic environment free of toxicity and harassment."] },
+      { t: ["فعاليات أسبوعية", "Weekly events"], d: ["مطاردات، عمليات، ومسابقات بجوائز داخل السيرفر.", "Chases, operations and contests with in-server prizes."] },
+      { t: ["ترقيات عادلة", "Fair promotions"], d: ["نظام رتب واضح يعتمد على الأداء والالتزام فقط.", "A clear rank system based purely on performance and commitment."] },
+    ],
+  },
+  departments: {
+    k: ["الأقسام", "Departments"],
+    t: ["اختر مسارك", "Choose your path"],
+    items: [
+      { t: ["الشرطة", "Police"], d: ["دوريات، مرور، وتحقيقات جنائية.", "Patrols, traffic and criminal investigations."] },
+      { t: ["الإسعاف", "EMS"], d: ["استجابة طبية طارئة ونقل المصابين.", "Emergency medical response and transport."] },
+      { t: ["الإطفاء", "Fire"], d: ["مكافحة الحرائق وعمليات الإنقاذ.", "Firefighting and rescue operations."] },
+      { t: ["المدنيون", "Civilians"], d: ["حياة يومية، أعمال، وسيناريوهات حرة.", "Daily life, jobs and free scenarios."] },
+    ],
+  },
+  rules: {
+    k: ["القوانين", "Rules"],
+    t: ["أساسيات اللعب", "Core rules"],
+    items: [
+      ["احترام جميع الأعضاء والإدارة في كل الأوقات.", "Respect every member and staff at all times."],
+      ["ممنوع الـ RDM / VDM أو تخريب الرول بلاي.", "No RDM / VDM or roleplay trolling."],
+      ["الالتزام بالشخصية داخل اللعب وعدم كسر الـ RP.", "Stay in character; never break RP."],
+      ["ممنوع استخدام أي برامج أو ثغرات غير قانونية.", "No exploits, cheats or third-party tools."],
+      ["اتباع أوامر الإدارة وفتح تذكرة عند أي مشكلة.", "Follow staff instructions and open a ticket for issues."],
+      ["اللغة العربية أو الإنجليزية فقط في القنوات العامة.", "Arabic or English only in public channels."],
+    ],
+  },
+  join: {
+    k: ["انضم إلينا", "Join us"],
+    t: ["مكانك بانتظارك", "Your spot is waiting"],
+    p: ["ادخل سيرفر الديسكورد، اقرأ القوانين، وابدأ رحلتك في Arab First RP اليوم.", "Join our Discord, read the rules, and start your journey at Arab First RP today."],
+    cta: ["دخول الديسكورد", "Open Discord"],
+  },
+  footer: { rights: ["جميع الحقوق محفوظة", "All rights reserved"], dev: ["تطوير", "Developed by"] },
+} as const;
+
+const Ctx = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({ lang: "ar", setLang: () => {} });
+
+export function LangProvider({ children }: { children: ReactNode }) {
+  const [lang, setLang] = useState<Lang>("ar");
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  }, [lang]);
+  return <Ctx.Provider value={{ lang, setLang }}>{children}</Ctx.Provider>;
+}
+
+export function useLang() {
+  const { lang, setLang } = useContext(Ctx);
+  const i = lang === "ar" ? 0 : 1;
+  const t = (pair: readonly [string, string] | string[]) => pair[i];
+  return { lang, setLang, i, t, dict };
+}
+
+export const DISCORD_URL = "https://discord.gg/af-1";
