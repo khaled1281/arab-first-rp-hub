@@ -10,13 +10,13 @@ import {
   Trophy,
   TrendingUp,
   Gamepad2,
-  ArrowLeftRight,
   Check,
 } from "lucide-react";
 import logo from "@/assets/af-logo.png.asset.json";
 import { useLang, DISCORD_URL } from "@/lib/i18n";
 import { Reveal } from "@/components/site/Reveal";
 import { BackgroundSlideshow } from "@/components/site/BackgroundSlideshow";
+import { SiteNav } from "@/components/site/SiteNav";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,48 +51,7 @@ function Index() {
       <div className="glow-orb left-[-10%] top-[-8%] h-[420px] w-[420px] bg-gold" aria-hidden="true" />
       <div className="glow-orb right-[-12%] top-[35%] h-[380px] w-[380px] bg-gold-deep" aria-hidden="true" />
 
-      {/* Nav */}
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
-          <a href="#top" className="flex items-center gap-2.5">
-            <img src={logo.url} alt="Arab First RP" className="h-9 w-9 object-contain" />
-            <span className="font-brand text-base tracking-[0.16em] text-gold-gradient">
-              ARAB FIRST <span className="font-tech text-xs text-erlc">RP</span>
-            </span>
-          </a>
-
-          <div className="hidden items-center gap-7 md:flex">
-            {(["about", "features", "departments", "rules"] as const).map((k) => (
-              <a
-                key={k}
-                href={`#${k}`}
-                className="text-sm text-muted-foreground transition-colors hover:text-gold"
-              >
-                {t(dict.nav[k])}
-              </a>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setLang(lang === "ar" ? "en" : "ar")}
-              className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-gold hover:text-gold"
-              aria-label="Switch language"
-            >
-              <ArrowLeftRight className="h-3.5 w-3.5" />
-              {lang === "ar" ? "EN" : "ع"}
-            </button>
-            <a
-              href={DISCORD_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="hidden rounded-full bg-gold px-4 py-2 text-xs font-bold text-primary-foreground transition-transform hover:scale-105 sm:inline-block"
-            >
-              {t(dict.nav.join)}
-            </a>
-          </div>
-        </nav>
-      </header>
+      <SiteNav />
 
       {/* Hero */}
       <section id="top" className="relative mx-auto max-w-6xl px-5 pb-24 pt-16 md:pt-24">
