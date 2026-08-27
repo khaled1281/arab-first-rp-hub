@@ -56,8 +56,8 @@ function Index() {
         <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
           <a href="#top" className="flex items-center gap-2.5">
             <img src={logo.url} alt="Arab First RP" className="h-9 w-9 object-contain" />
-            <span className="font-display text-sm font-bold tracking-[0.18em] text-gold-gradient">
-              ARAB FIRST RP
+            <span className="font-brand text-base tracking-[0.16em] text-gold-gradient">
+              ARAB FIRST <span className="font-tech text-xs text-erlc">RP</span>
             </span>
           </a>
 
