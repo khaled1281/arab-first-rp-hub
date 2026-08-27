@@ -272,8 +272,8 @@ function Index() {
       <footer className="border-t border-border/60 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 text-center">
           <img src={logo.url} alt="Arab First RP" className="h-10 w-10 object-contain" />
-          <p className="font-display text-sm font-bold tracking-[0.2em] text-gold-gradient">
-            ARAB FIRST RP
+          <p className="font-brand text-lg tracking-[0.18em] text-gold-gradient">
+            ARAB FIRST <span className="font-tech text-sm text-erlc">RP</span>
           </p>
           <p className="text-xs text-muted-foreground">
             EST. 2025 · {t(dict.footer.dev)} : n16q
