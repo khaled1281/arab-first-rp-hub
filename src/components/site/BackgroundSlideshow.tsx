@@ -10,7 +10,7 @@ export function BackgroundSlideshow() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 6000);
+    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 5000);
     return () => clearInterval(id);
   }, []);
 
@@ -21,11 +21,11 @@ export function BackgroundSlideshow() {
           key={src}
           src={src}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[1800ms] ease-in-out"
-          style={{ opacity: i === index ? 0.38 : 0 }}
+          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out"
+          style={{ opacity: i === index ? 1 : 0 }}
         />
       ))}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/75 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/55 via-background/45 to-background/85" />
     </div>
   );
 }
