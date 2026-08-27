@@ -106,10 +106,16 @@ function Index() {
               {t(dict.hero.badge)}
             </span>
 
-            <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-              <span className="shine-text">ARAB FIRST</span>
-              <br />
-              <span className="text-metal-gradient">RP</span>
+            <h1 className="mt-6 leading-[0.95]">
+              <span className="shine-text block font-brand text-6xl tracking-[0.02em] sm:text-7xl lg:text-8xl">
+                ARAB FIRST
+              </span>
+              <span className="text-metal-gradient block font-brand text-5xl tracking-[0.35em] sm:text-6xl">
+                RP
+              </span>
+              <span className="text-erlc-gradient mt-3 block font-tech text-lg font-black tracking-[0.5em] sm:text-xl">
+                ERLC
+              </span>
             </h1>
 
             <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted-foreground md:mx-0">
