@@ -46,6 +46,7 @@ function Index() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
+      <BackgroundSlideshow />
       <div className="pointer-events-none absolute inset-0 grid-bg" aria-hidden="true" />
       <div className="glow-orb left-[-10%] top-[-8%] h-[420px] w-[420px] bg-gold" aria-hidden="true" />
       <div className="glow-orb right-[-12%] top-[35%] h-[380px] w-[380px] bg-gold-deep" aria-hidden="true" />
