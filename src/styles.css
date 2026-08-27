@@ -41,7 +41,11 @@
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --font-display: "Space Grotesk", "Cairo", sans-serif;
-  --font-sans: "Cairo", "Space Grotesk", sans-serif;
+  --font-sans: "Tajawal", "Cairo", "Space Grotesk", sans-serif;
+  --font-brand: "Anton", "Rakkas", sans-serif;
+  --font-tech: "Orbitron", "Space Grotesk", sans-serif;
+  --font-arabic-display: "Rakkas", "Cairo", serif;
+  --color-erlc: var(--erlc);
 }
 
 :root {
