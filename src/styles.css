@@ -218,3 +218,11 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+@utility text-erlc-gradient {
+  background: linear-gradient(120deg, var(--erlc), oklch(0.88 0.09 220), var(--erlc));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 34px color-mix(in oklab, var(--erlc) 45%, transparent);
+}
