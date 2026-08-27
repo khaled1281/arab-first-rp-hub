@@ -17,6 +17,7 @@ import { useLang, DISCORD_URL } from "@/lib/i18n";
 import { Reveal } from "@/components/site/Reveal";
 import { BackgroundSlideshow } from "@/components/site/BackgroundSlideshow";
 import { SiteNav } from "@/components/site/SiteNav";
+import { VisitorCounter } from "@/components/site/VisitorCounter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -52,6 +53,7 @@ function Index() {
       <div className="glow-orb right-[-12%] top-[35%] h-[380px] w-[380px] bg-gold-deep" aria-hidden="true" />
 
       <SiteNav />
+      <VisitorCounter />
 
       {/* Hero */}
       <section id="top" className="relative mx-auto max-w-6xl px-5 pb-24 pt-16 md:pt-24">

@@ -127,7 +127,12 @@ export function SiteNav() {
                 key={k}
                 href={`#${k}`}
                 onClick={() => setOpen(false)}
-                className={`flex items-center gap-3 rounded-xl border border-border/50 px-4 py-3 text-sm font-semibold transition-colors ${
+                style={{
+                  transitionDelay: open ? `${i * 60}ms` : "0ms",
+                  transform: open ? "translateY(0)" : "translateY(-8px)",
+                  opacity: open ? 1 : 0,
+                }}
+                className={`flex items-center gap-3 rounded-xl border border-border/50 px-4 py-3 text-sm font-semibold transition-all duration-300 ${
                   active === k
                     ? "border-gold/40 bg-gold/10 text-gold"
                     : "bg-surface/40 text-foreground hover:border-gold/40 hover:text-gold"
