@@ -16,6 +16,7 @@ import {
 import logo from "@/assets/af-logo.png.asset.json";
 import { useLang, DISCORD_URL } from "@/lib/i18n";
 import { Reveal } from "@/components/site/Reveal";
+import { BackgroundSlideshow } from "@/components/site/BackgroundSlideshow";
 
 export const Route = createFileRoute("/")({
   head: () => ({
