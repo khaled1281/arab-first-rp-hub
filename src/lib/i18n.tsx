@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 export type Lang = "ar" | "en";
 
 const dict = {
-  nav: { home: ["الرئيسية", "Home"], about: ["عن السيرفر", "About"], features: ["المميزات", "Features"], rules: ["القوانين", "Rules"], departments: ["الأقسام", "Departments"], join: ["انضم إلينا", "Join"] },
+  nav: { home: ["الرئيسية", "Home"], about: ["عن السيرفر", "About"], features: ["المميزات", "Features"], rules: ["القوانين", "Rules"], departments: ["الأقسام", "Departments"], join: ["انضم إلينا", "Join"], store: ["المتجر", "Store"] },
   hero: {
     badge: ["سيرفر رول بلاي عربي · ERLC Roblox", "Arabic Roleplay Server · ERLC Roblox"],
     title: ["ARAB FIRST RP", "ARAB FIRST RP"],
@@ -67,6 +67,26 @@ const dict = {
     t: ["مكانك بانتظارك", "Your spot is waiting"],
     p: ["ادخل سيرفر الديسكورد، اقرأ القوانين، وابدأ رحلتك في Arab First RP اليوم.", "Join our Discord, read the rules, and start your journey at Arab First RP today."],
     cta: ["دخول الديسكورد", "Open Discord"],
+  },
+  store: {
+    k: ["المتجر", "Store"],
+    t: ["متجر Arab First RP", "Arab First RP Store"],
+    p: [
+      "ادعم السيرفر واحصل على مزايا إضافية داخل اللعب. الدفع بالروبوكس عبر تذكرة في الديسكورد.",
+      "Support the server and unlock extra in-game perks. Payment in Robux through a Discord ticket.",
+    ],
+    buy: ["اشترِ عبر الديسكورد", "Buy via Discord"],
+    currency: ["روبوكس", "Robux"],
+    popular: ["الأكثر طلباً", "Most popular"],
+    note: ["يتم تسليم المشتريات بعد تأكيد الدفع من الإدارة.", "Purchases are delivered after staff confirms the payment."],
+    items: [
+      { t: ["شراء سيارة", "Buy a car"], d: ["أضف سيارة خاصة إلى حسابك داخل السيرفر.", "Add a personal car to your in-server account."], price: 30, tag: "" },
+      { t: ["سيارة ون ادشن", "One Edition car"], d: ["سيارة حصرية ومميزة لا يمتلكها الجميع.", "An exclusive, rare edition vehicle."], price: 200, tag: "popular" },
+      { t: ["شخصية ٢", "2nd character"], d: ["افتح خانة شخصية ثانية بهوية مستقلة.", "Unlock a second character slot with its own identity."], price: 100, tag: "" },
+      { t: ["شخصية ٣", "3rd character"], d: ["خانة شخصية ثالثة — تتطلب امتلاك الشخصية الثانية.", "A third character slot — requires owning the 2nd character."], price: 150, tag: "req" },
+      { t: ["شراء مقر", "Buy a base"], d: ["مقر خاص لك أو لعصابتك داخل الخريطة.", "A private base for you or your crew on the map."], price: 100, tag: "" },
+    ],
+    req: ["يتطلب شراء شخصية ٢ أولاً", "Requires the 2nd character first"],
   },
   footer: { rights: ["جميع الحقوق محفوظة", "All rights reserved"], dev: ["تطوير", "Developed by"] },
 } as const;
