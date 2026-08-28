@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as DepartmentsRouteImport } from './routes/departments'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as RulesRouteImport } from './routes/rules'
+import { Route as StoreRouteImport } from './routes/store'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const RulesRoute = RulesRouteImport.update({
   path: '/rules',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StoreRoute = StoreRouteImport.update({
+  id: '/store',
+  path: '/store',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/departments': typeof DepartmentsRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
+  '/store': typeof StoreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/departments': typeof DepartmentsRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
+  '/store': typeof StoreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,21 @@ export interface FileRoutesById {
   '/departments': typeof DepartmentsRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
+  '/store': typeof StoreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/departments' | '/features' | '/rules'
+  fullPaths: '/' | '/about' | '/departments' | '/features' | '/rules' | '/store'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/departments' | '/features' | '/rules'
-  id: '__root__' | '/' | '/about' | '/departments' | '/features' | '/rules'
+  to: '/' | '/about' | '/departments' | '/features' | '/rules' | '/store'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/departments'
+    | '/features'
+    | '/rules'
+    | '/store'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +93,7 @@ export interface RootRouteChildren {
   DepartmentsRoute: typeof DepartmentsRoute
   FeaturesRoute: typeof FeaturesRoute
   RulesRoute: typeof RulesRoute
+  StoreRoute: typeof StoreRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +133,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RulesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/store': {
+      id: '/store'
+      path: '/store'
+      fullPath: '/store'
+      preLoaderRoute: typeof StoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +149,7 @@ const rootRouteChildren: RootRouteChildren = {
   DepartmentsRoute: DepartmentsRoute,
   FeaturesRoute: FeaturesRoute,
   RulesRoute: RulesRoute,
+  StoreRoute: StoreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
