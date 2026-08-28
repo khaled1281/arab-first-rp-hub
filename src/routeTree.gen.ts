@@ -10,33 +10,90 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as DepartmentsRouteImport } from './routes/departments'
+import { Route as FeaturesRouteImport } from './routes/features'
+import { Route as RulesRouteImport } from './routes/rules'
+import { Route as StoreRouteImport } from './routes/store'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DepartmentsRoute = DepartmentsRouteImport.update({
+  id: '/departments',
+  path: '/departments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RulesRoute = RulesRouteImport.update({
+  id: '/rules',
+  path: '/rules',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoreRoute = StoreRouteImport.update({
+  id: '/store',
+  path: '/store',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/departments': typeof DepartmentsRoute
+  '/features': typeof FeaturesRoute
+  '/rules': typeof RulesRoute
+  '/store': typeof StoreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/departments': typeof DepartmentsRoute
+  '/features': typeof FeaturesRoute
+  '/rules': typeof RulesRoute
+  '/store': typeof StoreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/departments': typeof DepartmentsRoute
+  '/features': typeof FeaturesRoute
+  '/rules': typeof RulesRoute
+  '/store': typeof StoreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/about' | '/departments' | '/features' | '/rules' | '/store'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/about' | '/departments' | '/features' | '/rules' | '/store'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/departments'
+    | '/features'
+    | '/rules'
+    | '/store'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  DepartmentsRoute: typeof DepartmentsRoute
+  FeaturesRoute: typeof FeaturesRoute
+  RulesRoute: typeof RulesRoute
+  StoreRoute: typeof StoreRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +105,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/departments': {
+      id: '/departments'
+      path: '/departments'
+      fullPath: '/departments'
+      preLoaderRoute: typeof DepartmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rules': {
+      id: '/rules'
+      path: '/rules'
+      fullPath: '/rules'
+      preLoaderRoute: typeof RulesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/store': {
+      id: '/store'
+      path: '/store'
+      fullPath: '/store'
+      preLoaderRoute: typeof StoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  DepartmentsRoute: DepartmentsRoute,
+  FeaturesRoute: FeaturesRoute,
+  RulesRoute: RulesRoute,
+  StoreRoute: StoreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LangProvider } from "../lib/i18n";
+import { SiteLayout } from "../components/site/SiteLayout";
 
 function NotFoundComponent() {
   return (
@@ -124,8 +125,8 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <LangProvider>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
+        {/* SiteLayout renders the required <Outlet /> for all child routes. */}
+        <SiteLayout />
       </LangProvider>
     </QueryClientProvider>
   );
