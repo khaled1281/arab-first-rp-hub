@@ -15,6 +15,7 @@ import { Route as DepartmentsRouteImport } from './routes/departments'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as RulesRouteImport } from './routes/rules'
 import { Route as StoreRouteImport } from './routes/store'
+import { Route as TeamRouteImport } from './routes/team'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const StoreRoute = StoreRouteImport.update({
   path: '/store',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
   '/store': typeof StoreRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
   '/store': typeof StoreRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,12 +79,27 @@ export interface FileRoutesById {
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
   '/store': typeof StoreRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/departments' | '/features' | '/rules' | '/store'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/departments'
+    | '/features'
+    | '/rules'
+    | '/store'
+    | '/team'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/departments' | '/features' | '/rules' | '/store'
+  to:
+    | '/'
+    | '/about'
+    | '/departments'
+    | '/features'
+    | '/rules'
+    | '/store'
+    | '/team'
   id:
     | '__root__'
     | '/'
@@ -85,6 +108,7 @@ export interface FileRouteTypes {
     | '/features'
     | '/rules'
     | '/store'
+    | '/team'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,6 +118,7 @@ export interface RootRouteChildren {
   FeaturesRoute: typeof FeaturesRoute
   RulesRoute: typeof RulesRoute
   StoreRoute: typeof StoreRoute
+  TeamRoute: typeof TeamRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -140,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StoreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -150,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   FeaturesRoute: FeaturesRoute,
   RulesRoute: RulesRoute,
   StoreRoute: StoreRoute,
+  TeamRoute: TeamRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

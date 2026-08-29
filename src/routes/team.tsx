@@ -1,0 +1,149 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Crown, Shield, Star, HeartHandshake, Code2 } from "lucide-react";
+import { useLang } from "@/lib/i18n";
+import { Reveal } from "@/components/site/Reveal";
+import { Section } from "@/components/site/Section";
+
+export const Route = createFileRoute("/team")({
+  head: () => ({
+    meta: [
+      { title: "فريق العمل — Arab First RP" },
+      {
+        name: "description",
+        content: "تعرّف على فريق إدارة Arab First RP: الأونر، الكو أونر، المستشارين، الإدارة العليا، ومبرمج السيرفر.",
+      },
+      { property: "og:title", content: "Team — Arab First RP" },
+      {
+        property: "og:description",
+        content: "Meet the Arab First RP leadership: owner, co-owner, advisors, senior staff and the official server developer.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: TeamPage,
+});
+
+type Member = {
+  name: string;
+  role: readonly [string, string];
+  icon: typeof Crown;
+};
+
+const OWNER: Member = { name: "5tt7", role: ["الأونر", "Owner"], icon: Crown };
+const CO_OWNER: Member = { name: "l5f_", role: ["الكو أونر", "Co-Owner"], icon: Shield };
+const ADVISORS: Member[] = [
+  { name: "t7i7", role: ["مستشار الأونر", "Owner Advisor"], icon: Star },
+  { name: "f_77j", role: ["مستشار الأونر الثاني", "Second Owner Advisor"], icon: Star },
+];
+const ASSISTANT: Member = { name: "4s7b", role: ["مساعدة الأونر", "Owner Assistant"], icon: HeartHandshake };
+const SENIOR: Member[] = [
+  { name: "bf7v", role: ["إدارة عليا", "Senior Staff"], icon: Shield },
+  { name: "n16q", role: ["إدارة عليا", "Senior Staff"], icon: Shield },
+];
+
+function Avatar({ name, size = "md" }: { name: string; size?: "lg" | "md" | "sm" }) {
+  const dim = size === "lg" ? "h-28 w-28 text-4xl" : size === "md" ? "h-20 w-20 text-2xl" : "h-16 w-16 text-xl";
+  return (
+    <div className="relative shrink-0">
+      <div className="absolute inset-0 rounded-full bg-gold/25 blur-xl" aria-hidden="true" />
+      <div
+        className={`relative ${dim} grid place-items-center rounded-full border border-gold/45 bg-surface-2/80 font-tech font-black text-gold-gradient shadow-[var(--shadow-gold)]`}
+      >
+        {name.slice(0, 2).toUpperCase()}
+      </div>
+    </div>
+  );
+}
+
+function Card({ m, featured = false }: { m: Member; featured?: boolean }) {
+  const Icon = m.icon;
+  const { t } = useLang();
+  return (
+    <div
+      className={`surface-card card-3d group relative flex flex-col items-center gap-3 rounded-3xl p-6 text-center ${
+        featured ? "gold-ring" : ""
+      }`}
+    >
+      <Avatar name={m.name} size={featured ? "lg" : "md"} />
+      <div className="flex items-center gap-1.5 text-gold">
+        <Icon className="h-3.5 w-3.5" />
+        <span className="font-display text-[0.65rem] tracking-[0.28em]">{t(m.role).toUpperCase()}</span>
+      </div>
+      <p className={`font-tech font-black ${featured ? "text-2xl" : "text-lg"} text-foreground`}>@{m.name}</p>
+    </div>
+  );
+}
+
+function TeamPage() {
+  const { lang, t, dict } = useLang();
+  const ar = lang === "ar";
+
+  return (
+    <Section kicker={t(dict.team.k)} title={t(dict.team.t)}>
+      <div className="mx-auto max-w-5xl space-y-6">
+        <Reveal className="mx-auto max-w-md">
+          <Card m={OWNER} featured />
+        </Reveal>
+
+        <Reveal delay={80} className="mx-auto max-w-sm">
+          <Card m={CO_OWNER} />
+        </Reveal>
+
+        <div className="grid gap-6 sm:grid-cols-2">
+          {ADVISORS.map((m, i) => (
+            <Reveal key={m.name} delay={120 + i * 80}>
+              <Card m={m} />
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={240} className="mx-auto max-w-sm">
+          <Card m={ASSISTANT} />
+        </Reveal>
+
+        <div className="grid gap-6 sm:grid-cols-2">
+          {SENIOR.map((m, i) => (
+            <Reveal key={m.name} delay={300 + i * 80}>
+              <Card m={m} />
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Official developer — special card */}
+        <Reveal delay={420}>
+          <div className="gold-ring relative overflow-hidden rounded-3xl bg-surface/70 p-8 backdrop-blur-xl">
+            <div className="glow-orb -top-16 left-1/2 h-56 w-56 -translate-x-1/2 bg-gold" aria-hidden="true" />
+            <div className="relative flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:text-start">
+              <div className="animate-float">
+                <Avatar name="n16q" size="lg" />
+              </div>
+              <div className={`flex-1 text-center ${ar ? "sm:text-right" : "sm:text-left"}`}>
+                <div className="flex items-center justify-center gap-2 text-erlc sm:justify-start">
+                  <Code2 className="h-4 w-4" />
+                  <span className="font-tech text-[0.65rem] tracking-[0.3em]">
+                    {t(dict.team.devRole).toUpperCase()}
+                  </span>
+                </div>
+                <p className="mt-2 font-brand text-4xl tracking-[0.12em] text-gold-gradient">N16Q</p>
+                <p className="mt-3 text-sm leading-loose text-muted-foreground">{t(dict.team.devDesc)}</p>
+                <div className="mt-4 flex flex-wrap justify-center gap-2 sm:justify-start">
+                  {["Website", "Systems", "Bots", "Design"].map((s) => (
+                    <span
+                      key={s}
+                      className="rounded-full border border-gold/35 bg-gold/10 px-3 py-1 font-tech text-[0.65rem] tracking-widest text-gold"
+                    >
+                      {s.toUpperCase()}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        <p className="pt-2 text-center text-xs text-muted-foreground">{t(dict.team.note)}</p>
+      </div>
+    </Section>
+  );
+}

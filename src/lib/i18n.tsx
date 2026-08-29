@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 export type Lang = "ar" | "en";
 
 const dict = {
-  nav: { home: ["الرئيسية", "Home"], about: ["عن السيرفر", "About"], features: ["المميزات", "Features"], rules: ["القوانين", "Rules"], departments: ["الأقسام", "Departments"], join: ["انضم إلينا", "Join"], store: ["المتجر", "Store"] },
+  nav: { home: ["الرئيسية", "Home"], about: ["عن السيرفر", "About"], features: ["المميزات", "Features"], rules: ["القوانين", "Rules"], departments: ["الأقسام", "Departments"], join: ["انضم إلينا", "Join"], team: ["الفريق", "Team"], store: ["المتجر", "Store"] },
   hero: {
     badge: ["سيرفر رول بلاي عربي · ERLC Roblox", "Arabic Roleplay Server · ERLC Roblox"],
     title: ["ARAB FIRST RP", "ARAB FIRST RP"],
@@ -67,6 +67,16 @@ const dict = {
     t: ["مكانك بانتظارك", "Your spot is waiting"],
     p: ["ادخل سيرفر الديسكورد، اقرأ القوانين، وابدأ رحلتك في Arab First RP اليوم.", "Join our Discord, read the rules, and start your journey at Arab First RP today."],
     cta: ["دخول الديسكورد", "Open Discord"],
+  },
+  team: {
+    k: ["فريق العمل", "Our team"],
+    t: ["قيادة Arab First RP", "Arab First RP leadership"],
+    devRole: ["مبرمج السيرفر الرسمي", "Official server developer"],
+    devDesc: [
+      "المسؤول عن الموقع الرسمي والأنظمة والبوتات والتصميم داخل Arab First RP.",
+      "Behind the official website, systems, bots and design of Arab First RP.",
+    ],
+    note: ["الأسماء المعروضة هي معرفات الديسكورد الرسمية للإدارة.", "Names shown are the official Discord handles of the staff."],
   },
   store: {
     k: ["المتجر", "Store"],
