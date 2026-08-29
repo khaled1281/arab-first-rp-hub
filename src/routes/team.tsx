@@ -47,17 +47,52 @@ function discordAvatar(m: Member, size = 256) {
   return `https://cdn.discordapp.com/embed/avatars/${idx}.png`;
 }
 
-const OWNER: Member = { name: "5tt7", role: ["الأونر", "Owner"], icon: Crown };
-const CO_OWNER: Member = { name: "l5f_", role: ["الكو أونر", "Co-Owner"], icon: Shield };
+const OWNER: Member = { name: "5tt7", role: ["الأونر", "Owner"], icon: Crown, id: "514688117748269059" };
+const CO_OWNER: Member = { name: "l5f_", role: ["الكو أونر", "Co-Owner"], icon: Shield, id: "795165795495706654" };
 const ADVISORS: Member[] = [
-  { name: "t7i7", role: ["مستشار الأونر", "Owner Advisor"], icon: Star },
-  { name: "f_77j", role: ["مستشار الأونر الثاني", "Second Owner Advisor"], icon: Star },
+  { name: "t7i7", role: ["مستشار الأونر", "Owner Advisor"], icon: Star, id: "1159878365902295142" },
+  { name: "f_77j", role: ["مستشار الأونر الثاني", "Second Owner Advisor"], icon: Star, id: "356995775185813514" },
 ];
-const ASSISTANT: Member = { name: "4s7b", role: ["مساعدة الأونر", "Owner Assistant"], icon: HeartHandshake };
+const ASSISTANT: Member = { name: "4s7b", role: ["مساعدة الأونر", "Owner Assistant"], icon: HeartHandshake, id: "525688320542638091" };
+const STAFF_ADVISOR: Member = {
+  name: "do.a1",
+  role: ["مستشار مسؤول الإدارة", "Staff Manager Advisor"],
+  icon: Star,
+  id: "1291851466612674655",
+};
 const SENIOR: Member[] = [
-  { name: "bf7v", role: ["إدارة عليا", "Senior Staff"], icon: Shield },
-  { name: "n16q", role: ["إدارة عليا", "Senior Staff"], icon: Shield },
+  { name: "bf7v", role: ["إدارة عليا", "Senior Staff"], icon: Shield, id: "441691499776704513" },
+  { name: "n16q", role: ["إدارة عليا", "Senior Staff"], icon: Shield, id: "1327699415372398696" },
 ];
+const SENIOR_ASSISTANT: Member = {
+  name: "76t2",
+  role: ["مساعد الإدارة العليا", "Senior Staff Assistant"],
+  icon: HeartHandshake,
+  id: "521398718277091340",
+};
+
+/** Vertical gold connector line between hierarchy levels. */
+function Link({ height = 40 }: { height?: number }) {
+  return (
+    <div className="relative mx-auto w-px" style={{ height }} aria-hidden="true">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/60 to-transparent" />
+      <div className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold shadow-[var(--shadow-gold)]" />
+    </div>
+  );
+}
+
+/** Branch that splits into two children. */
+function Branch() {
+  return (
+    <div className="relative mx-auto hidden h-10 w-full sm:block" aria-hidden="true">
+      <div className="absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-gold/60" />
+      <div className="absolute left-1/4 right-1/4 top-4 h-px bg-gradient-to-r from-gold/20 via-gold/60 to-gold/20" />
+      <div className="absolute left-1/4 top-4 h-6 w-px bg-gold/60" />
+      <div className="absolute right-1/4 top-4 h-6 w-px bg-gold/60" />
+    </div>
+  );
+}
+
 
 function Avatar({ member, size = "md" }: { member: Member; size?: "lg" | "md" | "sm" }) {
   const dim = size === "lg" ? "h-28 w-28 text-4xl" : size === "md" ? "h-20 w-20 text-2xl" : "h-16 w-16 text-xl";
