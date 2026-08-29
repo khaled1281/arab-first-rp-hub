@@ -3,6 +3,7 @@ import { Crown, Shield, Star, HeartHandshake, Code2 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { Reveal } from "@/components/site/Reveal";
 import { Section } from "@/components/site/Section";
+import { TiltCard } from "@/components/site/TiltCard";
 
 export const Route = createFileRoute("/team")({
   head: () => ({
@@ -28,7 +29,23 @@ type Member = {
   name: string;
   role: readonly [string, string];
   icon: typeof Crown;
+  /** Discord user ID — enables the real Discord avatar. */
+  id?: string;
+  /** Discord avatar hash (optional, from the Discord API). */
+  hash?: string;
 };
+
+/** Real Discord avatar when we know the user ID, otherwise null. */
+function discordAvatar(m: Member, size = 256) {
+  if (!m.id) return null;
+  if (m.hash) {
+    const ext = m.hash.startsWith("a_") ? "gif" : "png";
+    return `https://cdn.discordapp.com/avatars/${m.id}/${m.hash}.${ext}?size=${size}`;
+  }
+  // Default Discord avatar derived from the user ID (new username system).
+  const idx = Number((BigInt(m.id) >> 22n) % 6n);
+  return `https://cdn.discordapp.com/embed/avatars/${idx}.png`;
+}
 
 const OWNER: Member = { name: "5tt7", role: ["الأونر", "Owner"], icon: Crown };
 const CO_OWNER: Member = { name: "l5f_", role: ["الكو أونر", "Co-Owner"], icon: Shield };
@@ -42,15 +59,25 @@ const SENIOR: Member[] = [
   { name: "n16q", role: ["إدارة عليا", "Senior Staff"], icon: Shield },
 ];
 
-function Avatar({ name, size = "md" }: { name: string; size?: "lg" | "md" | "sm" }) {
+function Avatar({ member, size = "md" }: { member: Member; size?: "lg" | "md" | "sm" }) {
   const dim = size === "lg" ? "h-28 w-28 text-4xl" : size === "md" ? "h-20 w-20 text-2xl" : "h-16 w-16 text-xl";
+  const src = discordAvatar(member);
   return (
-    <div className="relative shrink-0">
-      <div className="absolute inset-0 rounded-full bg-gold/25 blur-xl" aria-hidden="true" />
+    <div className="relative shrink-0" style={{ transform: "translateZ(45px)" }}>
+      <div className="absolute inset-0 rounded-full bg-gold/25 blur-xl transition-all duration-500 group-hover/tilt:bg-gold/45 group-hover/tilt:blur-2xl" aria-hidden="true" />
       <div
-        className={`relative ${dim} grid place-items-center rounded-full border border-gold/45 bg-surface-2/80 font-tech font-black text-gold-gradient shadow-[var(--shadow-gold)]`}
+        className={`relative ${dim} grid place-items-center overflow-hidden rounded-full border border-gold/45 bg-surface-2/80 font-tech font-black text-gold-gradient shadow-[var(--shadow-gold)] transition-transform duration-500 group-hover/tilt:scale-105`}
       >
-        {name.slice(0, 2).toUpperCase()}
+        {src ? (
+          <img
+            src={src}
+            alt={`@${member.name}`}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          member.name.slice(0, 2).toUpperCase()
+        )}
       </div>
     </div>
   );
@@ -60,18 +87,23 @@ function Card({ m, featured = false }: { m: Member; featured?: boolean }) {
   const Icon = m.icon;
   const { t } = useLang();
   return (
-    <div
-      className={`surface-card card-3d group relative flex flex-col items-center gap-3 rounded-3xl p-6 text-center ${
+    <TiltCard
+      className={`surface-card flex h-full flex-col items-center gap-3 overflow-hidden rounded-3xl p-6 text-center hover:shadow-[var(--shadow-gold)] ${
         featured ? "gold-ring" : ""
       }`}
     >
-      <Avatar name={m.name} size={featured ? "lg" : "md"} />
-      <div className="flex items-center gap-1.5 text-gold">
-        <Icon className="h-3.5 w-3.5" />
+      <Avatar member={m} size={featured ? "lg" : "md"} />
+      <div className="flex items-center gap-1.5 text-gold" style={{ transform: "translateZ(28px)" }}>
+        <Icon className="h-3.5 w-3.5 transition-transform duration-500 group-hover/tilt:rotate-12" />
         <span className="font-display text-[0.65rem] tracking-[0.28em]">{t(m.role).toUpperCase()}</span>
       </div>
-      <p className={`font-tech font-black ${featured ? "text-2xl" : "text-lg"} text-foreground`}>@{m.name}</p>
-    </div>
+      <p
+        className={`font-tech font-black ${featured ? "text-2xl" : "text-lg"} text-foreground transition-colors duration-300 group-hover/tilt:text-gold-gradient`}
+        style={{ transform: "translateZ(20px)" }}
+      >
+        @{m.name}
+      </p>
+    </TiltCard>
   );
 }
 
@@ -112,11 +144,11 @@ function TeamPage() {
 
         {/* Official developer — special card */}
         <Reveal delay={420}>
-          <div className="gold-ring relative overflow-hidden rounded-3xl bg-surface/70 p-8 backdrop-blur-xl">
+          <TiltCard intensity={7} className="gold-ring relative overflow-hidden rounded-3xl bg-surface/70 p-8 backdrop-blur-xl">
             <div className="glow-orb -top-16 left-1/2 h-56 w-56 -translate-x-1/2 bg-gold" aria-hidden="true" />
             <div className="relative flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:text-start">
               <div className="animate-float">
-                <Avatar name="n16q" size="lg" />
+                <Avatar member={{ name: "n16q", role: ["", ""], icon: Code2 }} size="lg" />
               </div>
               <div className={`flex-1 text-center ${ar ? "sm:text-right" : "sm:text-left"}`}>
                 <div className="flex items-center justify-center gap-2 text-erlc sm:justify-start">
@@ -139,7 +171,7 @@ function TeamPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </TiltCard>
         </Reveal>
 
         <p className="pt-2 text-center text-xs text-muted-foreground">{t(dict.team.note)}</p>
