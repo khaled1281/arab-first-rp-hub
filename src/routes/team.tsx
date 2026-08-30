@@ -253,7 +253,7 @@ function TeamPage() {
             <div className="glow-orb -top-16 left-1/2 h-56 w-56 -translate-x-1/2 bg-gold" aria-hidden="true" />
             <div className="relative flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:text-start">
               <div className="animate-float">
-                <Avatar member={{ name: "n16q", role: ["", ""], icon: Code2 }} size="lg" />
+                <Avatar member={{ name: "n16q", role: ["", ""], icon: Code2, id: "1327699415372398696" }} size="lg" avatarUrl={avatars["1327699415372398696"]} />
               </div>
               <div className={`flex-1 text-center ${ar ? "sm:text-right" : "sm:text-left"}`}>
                 <div className="flex items-center justify-center gap-2 text-erlc sm:justify-start">
