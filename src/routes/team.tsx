@@ -98,20 +98,30 @@ function Branch() {
 }
 
 
-function Avatar({ member, size = "md" }: { member: Member; size?: "lg" | "md" | "sm" }) {
+function Avatar({
+  member,
+  size = "md",
+  avatarUrl,
+}: {
+  member: Member;
+  size?: "lg" | "md" | "sm";
+  avatarUrl?: string | null;
+}) {
   const dim = size === "lg" ? "h-28 w-28 text-4xl" : size === "md" ? "h-20 w-20 text-2xl" : "h-16 w-16 text-xl";
-  const src = discordAvatar(member);
+  const src = discordAvatar(member, avatarUrl);
+  const [broken, setBroken] = useState(false);
   return (
     <div className="relative shrink-0" style={{ transform: "translateZ(45px)" }}>
       <div className="absolute inset-0 rounded-full bg-gold/25 blur-xl transition-all duration-500 group-hover/tilt:bg-gold/45 group-hover/tilt:blur-2xl" aria-hidden="true" />
       <div
         className={`relative ${dim} grid place-items-center overflow-hidden rounded-full border border-gold/45 bg-surface-2/80 font-tech font-black text-gold-gradient shadow-[var(--shadow-gold)] transition-transform duration-500 group-hover/tilt:scale-105`}
       >
-        {src ? (
+        {src && !broken ? (
           <img
             src={src}
             alt={`@${member.name}`}
             loading="lazy"
+            onError={() => setBroken(true)}
             className="h-full w-full object-cover"
           />
         ) : (
