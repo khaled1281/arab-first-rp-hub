@@ -39,7 +39,8 @@ type Member = {
 };
 
 /** Real Discord avatar when we know the user ID, otherwise null. */
-function discordAvatar(m: Member, size = 256) {
+function discordAvatar(m: Member, override?: string | null, size = 256) {
+  if (override) return override;
   if (!m.id) return null;
   if (m.hash) {
     const ext = m.hash.startsWith("a_") ? "gif" : "png";
