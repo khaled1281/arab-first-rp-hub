@@ -180,17 +180,27 @@ function TeamPage() {
   const { lang, t, dict } = useLang();
   const ar = lang === "ar";
 
+  const avatars = useDiscordAvatars([
+    OWNER,
+    CO_OWNER,
+    ...ADVISORS,
+    ASSISTANT,
+    ...SENIOR,
+    STAFF_ADVISOR,
+    SENIOR_ASSISTANT,
+  ]);
+
   return (
     <Section kicker={t(dict.team.k)} title={t(dict.team.t)}>
       <div className="mx-auto max-w-5xl">
         <Reveal className="mx-auto max-w-md">
-          <Card m={OWNER} featured />
+          <Card m={OWNER} featured avatarUrl={avatars[OWNER.id!]} />
         </Reveal>
 
         <Link />
 
         <Reveal delay={80} className="mx-auto max-w-sm">
-          <Card m={CO_OWNER} />
+          <Card m={CO_OWNER} avatarUrl={avatars[CO_OWNER.id!]} />
         </Reveal>
 
         <Branch />
@@ -199,7 +209,7 @@ function TeamPage() {
         <div className="grid gap-6 sm:grid-cols-2">
           {ADVISORS.map((m, i) => (
             <Reveal key={m.name} delay={120 + i * 80}>
-              <Card m={m} />
+              <Card m={m} avatarUrl={avatars[m.id!]} />
             </Reveal>
           ))}
         </div>
@@ -207,33 +217,34 @@ function TeamPage() {
         <Link />
 
         <Reveal delay={240} className="mx-auto max-w-sm">
-          <Card m={ASSISTANT} />
+          <Card m={ASSISTANT} avatarUrl={avatars[ASSISTANT.id!]} />
         </Reveal>
 
         <Link />
 
-        <Reveal delay={280} className="mx-auto max-w-sm">
-          <Card m={STAFF_ADVISOR} />
-        </Reveal>
-
-        <Branch />
-        <div className="sm:hidden"><Link /></div>
-
         <div className="grid gap-6 sm:grid-cols-2">
           {SENIOR.map((m, i) => (
-            <Reveal key={m.name} delay={300 + i * 80}>
-              <Card m={m} />
+            <Reveal key={m.name} delay={280 + i * 80}>
+              <Card m={m} avatarUrl={avatars[m.id!]} />
             </Reveal>
           ))}
         </div>
 
         <Link />
 
+        <Reveal delay={340} className="mx-auto max-w-sm">
+          <Card m={STAFF_ADVISOR} avatarUrl={avatars[STAFF_ADVISOR.id!]} />
+        </Reveal>
+
+        <Link />
+
         <Reveal delay={380} className="mx-auto max-w-sm">
-          <Card m={SENIOR_ASSISTANT} />
+          <Card m={SENIOR_ASSISTANT} avatarUrl={avatars[SENIOR_ASSISTANT.id!]} />
         </Reveal>
 
         <Link height={56} />
+
+
 
 
         {/* Official developer — special card */}
