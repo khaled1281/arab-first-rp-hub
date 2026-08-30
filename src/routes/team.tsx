@@ -132,7 +132,7 @@ function Avatar({
   );
 }
 
-function Card({ m, featured = false, avatarUrl }: { m: Member; featured?: boolean; avatarUrl?: string | null }) {
+function Card({ m, featured = false, avatarUrl }: { m: Member; featured?: boolean; avatarUrl?: string | null | undefined }) {
   const Icon = m.icon;
   const { t } = useLang();
   return (
