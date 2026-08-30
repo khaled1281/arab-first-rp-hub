@@ -132,7 +132,7 @@ function Avatar({
   );
 }
 
-function Card({ m, featured = false }: { m: Member; featured?: boolean }) {
+function Card({ m, featured = false, avatarUrl }: { m: Member; featured?: boolean; avatarUrl?: string | null }) {
   const Icon = m.icon;
   const { t } = useLang();
   return (
@@ -141,7 +141,7 @@ function Card({ m, featured = false }: { m: Member; featured?: boolean }) {
         featured ? "gold-ring" : ""
       }`}
     >
-      <Avatar member={m} size={featured ? "lg" : "md"} />
+      <Avatar member={m} size={featured ? "lg" : "md"} avatarUrl={avatarUrl} />
       <div className="flex items-center gap-1.5 text-gold" style={{ transform: "translateZ(28px)" }}>
         <Icon className="h-3.5 w-3.5 transition-transform duration-500 group-hover/tilt:rotate-12" />
         <span className="font-display text-[0.65rem] tracking-[0.28em]">{t(m.role).toUpperCase()}</span>
@@ -154,6 +154,26 @@ function Card({ m, featured = false }: { m: Member; featured?: boolean }) {
       </p>
     </TiltCard>
   );
+}
+
+function useDiscordAvatars(members: { id?: string }[]) {
+  const fetchAvatars = useServerFn(getDiscordAvatars);
+  const [map, setMap] = useState<Record<string, string>>({});
+  useEffect(() => {
+    const ids = members.map((m) => m.id).filter((x): x is string => Boolean(x));
+    if (ids.length === 0) return;
+    let alive = true;
+    fetchAvatars({ data: { ids } })
+      .then((res) => {
+        if (alive && res) setMap(res);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return map;
 }
 
 function TeamPage() {
