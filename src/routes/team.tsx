@@ -148,14 +148,19 @@ function TeamPage() {
 
   return (
     <Section kicker={t(dict.team.k)} title={t(dict.team.t)}>
-      <div className="mx-auto max-w-5xl space-y-6">
+      <div className="mx-auto max-w-5xl">
         <Reveal className="mx-auto max-w-md">
           <Card m={OWNER} featured />
         </Reveal>
 
+        <Link />
+
         <Reveal delay={80} className="mx-auto max-w-sm">
           <Card m={CO_OWNER} />
         </Reveal>
+
+        <Branch />
+        <div className="sm:hidden"><Link /></div>
 
         <div className="grid gap-6 sm:grid-cols-2">
           {ADVISORS.map((m, i) => (
@@ -165,9 +170,20 @@ function TeamPage() {
           ))}
         </div>
 
+        <Link />
+
         <Reveal delay={240} className="mx-auto max-w-sm">
           <Card m={ASSISTANT} />
         </Reveal>
+
+        <Link />
+
+        <Reveal delay={280} className="mx-auto max-w-sm">
+          <Card m={STAFF_ADVISOR} />
+        </Reveal>
+
+        <Branch />
+        <div className="sm:hidden"><Link /></div>
 
         <div className="grid gap-6 sm:grid-cols-2">
           {SENIOR.map((m, i) => (
@@ -176,6 +192,15 @@ function TeamPage() {
             </Reveal>
           ))}
         </div>
+
+        <Link />
+
+        <Reveal delay={380} className="mx-auto max-w-sm">
+          <Card m={SENIOR_ASSISTANT} />
+        </Reveal>
+
+        <Link height={56} />
+
 
         {/* Official developer — special card */}
         <Reveal delay={420}>
