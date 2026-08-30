@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { Crown, Shield, Star, HeartHandshake, Code2 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
+import { getDiscordAvatars } from "@/lib/discord-avatars.functions";
 import { Reveal } from "@/components/site/Reveal";
 import { Section } from "@/components/site/Section";
 import { TiltCard } from "@/components/site/TiltCard";
@@ -36,7 +39,8 @@ type Member = {
 };
 
 /** Real Discord avatar when we know the user ID, otherwise null. */
-function discordAvatar(m: Member, size = 256) {
+function discordAvatar(m: Member, override?: string | null, size = 256) {
+  if (override) return override;
   if (!m.id) return null;
   if (m.hash) {
     const ext = m.hash.startsWith("a_") ? "gif" : "png";
@@ -94,20 +98,30 @@ function Branch() {
 }
 
 
-function Avatar({ member, size = "md" }: { member: Member; size?: "lg" | "md" | "sm" }) {
+function Avatar({
+  member,
+  size = "md",
+  avatarUrl,
+}: {
+  member: Member;
+  size?: "lg" | "md" | "sm";
+  avatarUrl?: string | null | undefined;
+}) {
   const dim = size === "lg" ? "h-28 w-28 text-4xl" : size === "md" ? "h-20 w-20 text-2xl" : "h-16 w-16 text-xl";
-  const src = discordAvatar(member);
+  const src = discordAvatar(member, avatarUrl);
+  const [broken, setBroken] = useState(false);
   return (
     <div className="relative shrink-0" style={{ transform: "translateZ(45px)" }}>
       <div className="absolute inset-0 rounded-full bg-gold/25 blur-xl transition-all duration-500 group-hover/tilt:bg-gold/45 group-hover/tilt:blur-2xl" aria-hidden="true" />
       <div
         className={`relative ${dim} grid place-items-center overflow-hidden rounded-full border border-gold/45 bg-surface-2/80 font-tech font-black text-gold-gradient shadow-[var(--shadow-gold)] transition-transform duration-500 group-hover/tilt:scale-105`}
       >
-        {src ? (
+        {src && !broken ? (
           <img
             src={src}
             alt={`@${member.name}`}
             loading="lazy"
+            onError={() => setBroken(true)}
             className="h-full w-full object-cover"
           />
         ) : (
@@ -118,7 +132,7 @@ function Avatar({ member, size = "md" }: { member: Member; size?: "lg" | "md" | 
   );
 }
 
-function Card({ m, featured = false }: { m: Member; featured?: boolean }) {
+function Card({ m, featured = false, avatarUrl }: { m: Member; featured?: boolean; avatarUrl?: string | null | undefined }) {
   const Icon = m.icon;
   const { t } = useLang();
   return (
@@ -127,7 +141,7 @@ function Card({ m, featured = false }: { m: Member; featured?: boolean }) {
         featured ? "gold-ring" : ""
       }`}
     >
-      <Avatar member={m} size={featured ? "lg" : "md"} />
+      <Avatar member={m} size={featured ? "lg" : "md"} avatarUrl={avatarUrl} />
       <div className="flex items-center gap-1.5 text-gold" style={{ transform: "translateZ(28px)" }}>
         <Icon className="h-3.5 w-3.5 transition-transform duration-500 group-hover/tilt:rotate-12" />
         <span className="font-display text-[0.65rem] tracking-[0.28em]">{t(m.role).toUpperCase()}</span>
@@ -142,21 +156,51 @@ function Card({ m, featured = false }: { m: Member; featured?: boolean }) {
   );
 }
 
+function useDiscordAvatars(members: { id?: string }[]) {
+  const fetchAvatars = useServerFn(getDiscordAvatars);
+  const [map, setMap] = useState<Record<string, string>>({});
+  useEffect(() => {
+    const ids = members.map((m) => m.id).filter((x): x is string => Boolean(x));
+    if (ids.length === 0) return;
+    let alive = true;
+    fetchAvatars({ data: { ids } })
+      .then((res) => {
+        if (alive && res) setMap(res);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return map;
+}
+
 function TeamPage() {
   const { lang, t, dict } = useLang();
   const ar = lang === "ar";
+
+  const avatars = useDiscordAvatars([
+    OWNER,
+    CO_OWNER,
+    ...ADVISORS,
+    ASSISTANT,
+    ...SENIOR,
+    STAFF_ADVISOR,
+    SENIOR_ASSISTANT,
+  ]);
 
   return (
     <Section kicker={t(dict.team.k)} title={t(dict.team.t)}>
       <div className="mx-auto max-w-5xl">
         <Reveal className="mx-auto max-w-md">
-          <Card m={OWNER} featured />
+          <Card m={OWNER} featured avatarUrl={avatars[OWNER.id!]} />
         </Reveal>
 
         <Link />
 
         <Reveal delay={80} className="mx-auto max-w-sm">
-          <Card m={CO_OWNER} />
+          <Card m={CO_OWNER} avatarUrl={avatars[CO_OWNER.id!]} />
         </Reveal>
 
         <Branch />
@@ -165,7 +209,7 @@ function TeamPage() {
         <div className="grid gap-6 sm:grid-cols-2">
           {ADVISORS.map((m, i) => (
             <Reveal key={m.name} delay={120 + i * 80}>
-              <Card m={m} />
+              <Card m={m} avatarUrl={avatars[m.id!]} />
             </Reveal>
           ))}
         </div>
@@ -173,33 +217,34 @@ function TeamPage() {
         <Link />
 
         <Reveal delay={240} className="mx-auto max-w-sm">
-          <Card m={ASSISTANT} />
+          <Card m={ASSISTANT} avatarUrl={avatars[ASSISTANT.id!]} />
         </Reveal>
 
         <Link />
 
-        <Reveal delay={280} className="mx-auto max-w-sm">
-          <Card m={STAFF_ADVISOR} />
-        </Reveal>
-
-        <Branch />
-        <div className="sm:hidden"><Link /></div>
-
         <div className="grid gap-6 sm:grid-cols-2">
           {SENIOR.map((m, i) => (
-            <Reveal key={m.name} delay={300 + i * 80}>
-              <Card m={m} />
+            <Reveal key={m.name} delay={280 + i * 80}>
+              <Card m={m} avatarUrl={avatars[m.id!]} />
             </Reveal>
           ))}
         </div>
 
         <Link />
 
+        <Reveal delay={340} className="mx-auto max-w-sm">
+          <Card m={STAFF_ADVISOR} avatarUrl={avatars[STAFF_ADVISOR.id!]} />
+        </Reveal>
+
+        <Link />
+
         <Reveal delay={380} className="mx-auto max-w-sm">
-          <Card m={SENIOR_ASSISTANT} />
+          <Card m={SENIOR_ASSISTANT} avatarUrl={avatars[SENIOR_ASSISTANT.id!]} />
         </Reveal>
 
         <Link height={56} />
+
+
 
 
         {/* Official developer — special card */}
@@ -208,7 +253,7 @@ function TeamPage() {
             <div className="glow-orb -top-16 left-1/2 h-56 w-56 -translate-x-1/2 bg-gold" aria-hidden="true" />
             <div className="relative flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:text-start">
               <div className="animate-float">
-                <Avatar member={{ name: "n16q", role: ["", ""], icon: Code2 }} size="lg" />
+                <Avatar member={{ name: "n16q", role: ["", ""], icon: Code2, id: "1327699415372398696" }} size="lg" avatarUrl={avatars["1327699415372398696"]} />
               </div>
               <div className={`flex-1 text-center ${ar ? "sm:text-right" : "sm:text-left"}`}>
                 <div className="flex items-center justify-center gap-2 text-erlc sm:justify-start">
