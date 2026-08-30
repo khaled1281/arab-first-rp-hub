@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { Crown, Shield, Star, HeartHandshake, Code2 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
+import { getDiscordAvatars } from "@/lib/discord-avatars.functions";
 import { Reveal } from "@/components/site/Reveal";
 import { Section } from "@/components/site/Section";
 import { TiltCard } from "@/components/site/TiltCard";
