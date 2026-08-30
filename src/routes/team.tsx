@@ -105,7 +105,7 @@ function Avatar({
 }: {
   member: Member;
   size?: "lg" | "md" | "sm";
-  avatarUrl?: string | null;
+  avatarUrl?: string | null | undefined;
 }) {
   const dim = size === "lg" ? "h-28 w-28 text-4xl" : size === "md" ? "h-20 w-20 text-2xl" : "h-16 w-16 text-xl";
   const src = discordAvatar(member, avatarUrl);
