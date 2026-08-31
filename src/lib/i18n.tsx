@@ -52,15 +52,7 @@ const dict = {
   },
   rules: {
     k: ["القوانين", "Rules"],
-    t: ["أساسيات اللعب", "Core rules"],
-    items: [
-      ["احترام جميع الأعضاء والإدارة في كل الأوقات.", "Respect every member and staff at all times."],
-      ["ممنوع الـ RDM / VDM أو تخريب الرول بلاي.", "No RDM / VDM or roleplay trolling."],
-      ["الالتزام بالشخصية داخل اللعب وعدم كسر الـ RP.", "Stay in character; never break RP."],
-      ["ممنوع استخدام أي برامج أو ثغرات غير قانونية.", "No exploits, cheats or third-party tools."],
-      ["اتباع أوامر الإدارة وفتح تذكرة عند أي مشكلة.", "Follow staff instructions and open a ticket for issues."],
-      ["اللغة العربية أو الإنجليزية فقط في القنوات العامة.", "Arabic or English only in public channels."],
-    ],
+    t: ["قوانين السيرفر الكاملة", "Full server rules"],
   },
   join: {
     k: ["انضم إلينا", "Join us"],
