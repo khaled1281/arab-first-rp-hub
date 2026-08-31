@@ -3,6 +3,8 @@ import { ShoppingBag, ArrowRight } from "lucide-react";
 import logo from "@/assets/af-logo.png.asset.json";
 import { useLang, DISCORD_URL } from "@/lib/i18n";
 import { Reveal } from "@/components/site/Reveal";
+import { ServerStatus } from "@/components/site/ServerStatus";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
