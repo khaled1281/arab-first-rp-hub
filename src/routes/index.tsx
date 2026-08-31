@@ -3,6 +3,8 @@ import { ShoppingBag, ArrowRight } from "lucide-react";
 import logo from "@/assets/af-logo.png.asset.json";
 import { useLang, DISCORD_URL } from "@/lib/i18n";
 import { Reveal } from "@/components/site/Reveal";
+import { ServerStatus } from "@/components/site/ServerStatus";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -97,8 +99,14 @@ function Index() {
         </div>
       </div>
 
+      {/* Live Discord server status */}
+      <div className="mt-16">
+        <ServerStatus />
+      </div>
+
       {/* Stats */}
-      <div className="mt-20 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+
         {dict.stats.map((s, idx) => (
           <Reveal key={s.v} delay={idx * 90}>
             <div className="surface-card card-3d rounded-2xl px-5 py-6 text-center">
