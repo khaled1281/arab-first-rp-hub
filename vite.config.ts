@@ -12,4 +12,13 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    build: {
+      // No source maps in production: DevTools shows only minified bundles,
+      // never the original src/ files.
+      sourcemap: false,
+      minify: "esbuild",
+    },
+  },
 });
+

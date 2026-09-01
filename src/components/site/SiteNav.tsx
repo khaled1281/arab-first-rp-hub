@@ -98,9 +98,13 @@ export function SiteNav() {
             className="flex items-center gap-1.5 rounded-full border border-border px-3 py-2 text-xs font-bold text-foreground transition-colors hover:border-gold hover:text-gold"
             aria-label="Switch language"
           >
+            <span className="text-sm leading-none" aria-hidden="true">
+              {lang === "ar" ? "🇬🇧" : "🇸🇦"}
+            </span>
             <ArrowLeftRight className="h-3.5 w-3.5" />
             {lang === "ar" ? "EN" : "ع"}
           </button>
+
           <a
             href={DISCORD_URL}
             target="_blank"
