@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Shield, Ambulance, Flame, Users } from "lucide-react";
+import { useState } from "react";
+import { Shield, Ambulance, Flame, Users, Lock } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { Reveal } from "@/components/site/Reveal";
 import { Section } from "@/components/site/Section";
+
 
 export const Route = createFileRoute("/departments")({
   head: () => ({
