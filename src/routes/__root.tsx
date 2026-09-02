@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LangProvider } from "../lib/i18n";
 import { SiteLayout } from "../components/site/SiteLayout";
+import { CodeProtection } from "../components/site/CodeProtection";
 
 function NotFoundComponent() {
   return (
@@ -125,6 +126,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <LangProvider>
+        <CodeProtection />
         {/* SiteLayout renders the required <Outlet /> for all child routes. */}
         <SiteLayout />
       </LangProvider>
