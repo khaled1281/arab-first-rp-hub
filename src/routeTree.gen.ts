@@ -14,7 +14,9 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as DepartmentsRouteImport } from './routes/departments'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as RulesRouteImport } from './routes/rules'
+import { Route as StaffRouteImport } from './routes/staff'
 import { Route as StoreRouteImport } from './routes/store'
+import { Route as SupervisionRouteImport } from './routes/supervision'
 import { Route as TeamRouteImport } from './routes/team'
 
 const IndexRoute = IndexRouteImport.update({
@@ -42,9 +44,19 @@ const RulesRoute = RulesRouteImport.update({
   path: '/rules',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StaffRoute = StaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StoreRoute = StoreRouteImport.update({
   id: '/store',
   path: '/store',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupervisionRoute = SupervisionRouteImport.update({
+  id: '/supervision',
+  path: '/supervision',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TeamRoute = TeamRouteImport.update({
@@ -59,7 +71,9 @@ export interface FileRoutesByFullPath {
   '/departments': typeof DepartmentsRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
+  '/staff': typeof StaffRoute
   '/store': typeof StoreRoute
+  '/supervision': typeof SupervisionRoute
   '/team': typeof TeamRoute
 }
 export interface FileRoutesByTo {
@@ -68,7 +82,9 @@ export interface FileRoutesByTo {
   '/departments': typeof DepartmentsRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
+  '/staff': typeof StaffRoute
   '/store': typeof StoreRoute
+  '/supervision': typeof SupervisionRoute
   '/team': typeof TeamRoute
 }
 export interface FileRoutesById {
@@ -78,7 +94,9 @@ export interface FileRoutesById {
   '/departments': typeof DepartmentsRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
+  '/staff': typeof StaffRoute
   '/store': typeof StoreRoute
+  '/supervision': typeof SupervisionRoute
   '/team': typeof TeamRoute
 }
 export interface FileRouteTypes {
@@ -89,7 +107,9 @@ export interface FileRouteTypes {
     | '/departments'
     | '/features'
     | '/rules'
+    | '/staff'
     | '/store'
+    | '/supervision'
     | '/team'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -98,7 +118,9 @@ export interface FileRouteTypes {
     | '/departments'
     | '/features'
     | '/rules'
+    | '/staff'
     | '/store'
+    | '/supervision'
     | '/team'
   id:
     | '__root__'
@@ -107,7 +129,9 @@ export interface FileRouteTypes {
     | '/departments'
     | '/features'
     | '/rules'
+    | '/staff'
     | '/store'
+    | '/supervision'
     | '/team'
   fileRoutesById: FileRoutesById
 }
@@ -117,7 +141,9 @@ export interface RootRouteChildren {
   DepartmentsRoute: typeof DepartmentsRoute
   FeaturesRoute: typeof FeaturesRoute
   RulesRoute: typeof RulesRoute
+  StaffRoute: typeof StaffRoute
   StoreRoute: typeof StoreRoute
+  SupervisionRoute: typeof SupervisionRoute
   TeamRoute: typeof TeamRoute
 }
 
@@ -158,11 +184,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RulesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/staff': {
+      id: '/staff'
+      path: '/staff'
+      fullPath: '/staff'
+      preLoaderRoute: typeof StaffRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/store': {
       id: '/store'
       path: '/store'
       fullPath: '/store'
       preLoaderRoute: typeof StoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/supervision': {
+      id: '/supervision'
+      path: '/supervision'
+      fullPath: '/supervision'
+      preLoaderRoute: typeof SupervisionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/team': {
@@ -181,7 +221,9 @@ const rootRouteChildren: RootRouteChildren = {
   DepartmentsRoute: DepartmentsRoute,
   FeaturesRoute: FeaturesRoute,
   RulesRoute: RulesRoute,
+  StaffRoute: StaffRoute,
   StoreRoute: StoreRoute,
+  SupervisionRoute: SupervisionRoute,
   TeamRoute: TeamRoute,
 }
 export const routeTree = rootRouteImport
