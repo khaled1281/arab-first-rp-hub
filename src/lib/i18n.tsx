@@ -49,7 +49,16 @@ const dict = {
       { t: ["الإطفاء", "Fire"], d: ["مكافحة الحرائق وعمليات الإنقاذ.", "Firefighting and rescue operations."] },
       { t: ["المدنيون", "Civilians"], d: ["حياة يومية، أعمال، وسيناريوهات حرة.", "Daily life, jobs and free scenarios."] },
     ],
+    apply: ["تقديم", "Apply"],
+    status: ["التقديمات مغلقة", "Applications closed"],
+    closedTitle: ["التقديم مغلق حالياً", "Applications are currently closed"],
+    closedMsg: [
+      "تم إغلاق التقديم على هذا القسم مؤقتاً. تابع سيرفر الديسكورد ليصلك إعلان فتح التقديمات.",
+      "Applications for this department are temporarily closed. Follow our Discord for the reopening announcement.",
+    ],
+    noApply: ["لا يحتاج تقديم", "No application needed"],
   },
+
   rules: {
     k: ["القوانين", "Rules"],
     t: ["قوانين السيرفر الكاملة", "Full server rules"],
