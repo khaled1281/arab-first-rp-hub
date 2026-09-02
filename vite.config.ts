@@ -17,7 +17,7 @@ export default defineConfig({
       // No source maps in production: DevTools shows only minified bundles,
       // never the original src/ files.
       sourcemap: false,
-      minify: "esbuild",
+      minify: true,
     },
   },
 });
