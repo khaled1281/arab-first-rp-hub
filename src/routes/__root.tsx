@@ -126,6 +126,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <LangProvider>
+        <CodeProtection />
         {/* SiteLayout renders the required <Outlet /> for all child routes. */}
         <SiteLayout />
       </LangProvider>
