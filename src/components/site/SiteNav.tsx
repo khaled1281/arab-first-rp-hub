@@ -25,6 +25,7 @@ const ICONS: Record<NavPath, typeof Home> = {
   "/team": Users,
   "/staff": ShieldCheck,
   "/supervision": Eye,
+  "/dev-team": Code2,
   "/features": Sparkles,
   "/departments": Shield,
   "/rules": ScrollText,
