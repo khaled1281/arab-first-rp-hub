@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MapPin, Building2, Route, ShieldCheck } from "lucide-react";
+import { MapPin, Building2, Route as RouteIcon, ShieldCheck } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { Reveal } from "@/components/site/Reveal";
 import { Section } from "@/components/site/Section";
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/safezones")({
 const LEGEND = [
   { Icon: ShieldCheck, color: "text-[#48a96b]", dot: "bg-[#48a96b]" },
   { Icon: Building2, color: "text-[#d98d3e]", dot: "bg-[#d98d3e]" },
-  { Icon: Route, color: "text-muted-foreground", dot: "bg-[#4d4d4d]" },
+  { Icon: RouteIcon, color: "text-muted-foreground", dot: "bg-[#4d4d4d]" },
 ] as const;
 
 function SafeZonesPage() {
