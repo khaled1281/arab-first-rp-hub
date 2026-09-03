@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 export type Lang = "ar" | "en";
 
 const dict = {
-  nav: { home: ["الرئيسية", "Home"], about: ["عن السيرفر", "About"], features: ["المميزات", "Features"], rules: ["القوانين", "Rules"], departments: ["الأقسام", "Departments"], join: ["انضم إلينا", "Join"], team: ["الفريق", "Team"], store: ["المتجر", "Store"], staff: ["الطاقم الإداري", "Staff"], supervision: ["الطاقم الرقابي", "Supervision"], devteam: ["الطاقم البرمجي", "Dev Team"] },
+  nav: { home: ["الرئيسية", "Home"], about: ["عن السيرفر", "About"], features: ["المميزات", "Features"], rules: ["القوانين", "Rules"], departments: ["الأقسام", "Departments"], join: ["انضم إلينا", "Join"], team: ["الفريق", "Team"], store: ["المتجر", "Store"], staff: ["الطاقم الإداري", "Staff"], supervision: ["الطاقم الرقابي", "Supervision"], devteam: ["الطاقم البرمجي", "Dev Team"], safezones: ["المناطق الآمنة", "Safe Zones"] },
   devTeam: {
     k: ["الطاقم البرمجي", "Development team"],
     t: ["البرمجة في Arab First RP", "Engineering at Arab First RP"],
@@ -131,6 +131,22 @@ const dict = {
       { t: ["شراء مقر", "Buy a base"], d: ["مقر خاص لك أو لعصابتك داخل الخريطة.", "A private base for you or your crew on the map."], price: 100, tag: "" },
     ],
     req: ["يتطلب شراء شخصية ٢ أولاً", "Requires the 2nd character first"],
+  },
+  safezones: {
+    k: ["المناطق الآمنة", "Safe Zones"],
+    t: ["خريطة السيرفر", "Server map"],
+    p: [
+      "خريطة Season 4 الرسمية لـ Arab First RP. المناطق المظللة بالأخضر هي المناطق الآمنة، بينما المظللة بالبرتقالي مناطق تجارية وصناعية.",
+      "The official Season 4 map of Arab First RP. Green-shaded areas are safe zones, while orange-shaded areas are commercial and industrial districts.",
+    ],
+    legend: ["مفتاح الخريطة", "Map legend"],
+    safe: ["منطقة آمنة", "Safe zone"],
+    commercial: ["منطقة تجارية/صناعية", "Commercial / industrial"],
+    road: ["طرق رئيسية", "Main roads"],
+    note: [
+      "احترم حدود كل منطقة أثناء اللعب. المناطق الآمنة مخصّصة للتفاعل اليومي وغير مكان للمطاردات أو العمليات.",
+      "Respect each zone's boundaries during play. Safe zones are for daily interaction — not chases or operations.",
+    ],
   },
   footer: { rights: ["جميع الحقوق محفوظة", "All rights reserved"], dev: ["تطوير", "Developed by"] },
 } as const;
