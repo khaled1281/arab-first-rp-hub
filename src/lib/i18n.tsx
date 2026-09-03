@@ -80,6 +80,7 @@ const dict = {
       { t: ["الإسعاف", "EMS"], d: ["استجابة طبية طارئة ونقل المصابين.", "Emergency medical response and transport."] },
       { t: ["الإطفاء", "Fire"], d: ["مكافحة الحرائق وعمليات الإنقاذ.", "Firefighting and rescue operations."] },
       { t: ["المدنيون", "Civilians"], d: ["حياة يومية، أعمال، وسيناريوهات حرة.", "Daily life, jobs and free scenarios."] },
+      { t: ["وزارة العدل", "Ministry of Justice"], d: ["القضاء، المحاكم، والمحاماة داخل السيرفر.", "Judges, courts and legal defense inside the server."] },
     ],
     apply: ["تقديم", "Apply"],
     status: ["التقديمات مغلقة", "Applications closed"],
