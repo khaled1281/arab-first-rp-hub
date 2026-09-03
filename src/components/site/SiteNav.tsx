@@ -11,6 +11,8 @@ import {
   ScrollText,
   ShoppingBag,
   Users,
+  ShieldCheck,
+  Eye,
 } from "lucide-react";
 import logo from "@/assets/af-logo.png.asset.json";
 import { useLang, DISCORD_URL } from "@/lib/i18n";
@@ -20,6 +22,8 @@ const ICONS: Record<NavPath, typeof Home> = {
   "/": Home,
   "/about": Info,
   "/team": Users,
+  "/staff": ShieldCheck,
+  "/supervision": Eye,
   "/features": Sparkles,
   "/departments": Shield,
   "/rules": ScrollText,

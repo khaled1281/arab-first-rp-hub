@@ -3,7 +3,26 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 export type Lang = "ar" | "en";
 
 const dict = {
-  nav: { home: ["الرئيسية", "Home"], about: ["عن السيرفر", "About"], features: ["المميزات", "Features"], rules: ["القوانين", "Rules"], departments: ["الأقسام", "Departments"], join: ["انضم إلينا", "Join"], team: ["الفريق", "Team"], store: ["المتجر", "Store"] },
+  nav: { home: ["الرئيسية", "Home"], about: ["عن السيرفر", "About"], features: ["المميزات", "Features"], rules: ["القوانين", "Rules"], departments: ["الأقسام", "Departments"], join: ["انضم إلينا", "Join"], team: ["الفريق", "Team"], store: ["المتجر", "Store"], staff: ["الطاقم الإداري", "Staff"], supervision: ["الطاقم الرقابي", "Supervision"] },
+  staffPages: {
+    loading: ["جارٍ التحميل...", "Loading..."],
+    empty: ["لا يوجد أعضاء في هذه الرتبة حالياً.", "No members in this role right now."],
+    count: ["عضو", "members"],
+    adminK: ["الطاقم الإداري", "Administrative staff"],
+    adminT: ["إدارة Arab First RP", "Arab First RP administration"],
+    adminP: [
+      "جميع أعضاء الطاقم الإداري في Arab First RP بأفاتاراتهم ويوزراتهم الرسمية في الديسكورد.",
+      "Every administrative staff member of Arab First RP with their official Discord avatars and handles.",
+    ],
+    adminRole: ["إداري", "Staff"],
+    supK: ["الطاقم الرقابي", "Supervision team"],
+    supT: ["الرقابة في Arab First RP", "Arab First RP supervision"],
+    supP: [
+      "أعضاء الطاقم الرقابي المسؤولون عن متابعة الإدارة وجودة اللعب داخل السيرفر.",
+      "The supervision team responsible for monitoring staff and gameplay quality.",
+    ],
+    supRole: ["رقابي", "Supervisor"],
+  },
   hero: {
     badge: ["سيرفر رول بلاي عربي · ERLC Roblox", "Arabic Roleplay Server · ERLC Roblox"],
     title: ["ARAB FIRST RP", "ARAB FIRST RP"],
