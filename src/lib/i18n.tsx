@@ -144,7 +144,7 @@ const dict = {
     commercial: ["منطقة تجارية/صناعية", "Commercial / industrial"],
     road: ["طرق رئيسية", "Main roads"],
     note: [
-      "احترم حدود كل منطقة أثناء اللعب. المناطق الآمنة مخصّصة للتفاعل اليومي وغير مكان للمطاردات أو العمليات.",
+      "احترم المناطق الأمنة، لا يحق لك الطلق فيها او خطف مواطن في المناطق الامنة - afrps4 ",
       "Respect each zone's boundaries during play. Safe zones are for daily interaction — not chases or operations.",
     ],
   },
