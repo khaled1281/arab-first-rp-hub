@@ -38,7 +38,7 @@ function DepartmentsPage() {
       <div className="scene-3d grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {dep.items.map((d, idx) => {
           const Icon = icons[idx]!;
-          const canApply = idx < 3;
+          const canApply = idx !== 3;
           const isOpen = openIdx === idx;
           return (
             <Reveal key={d.t[1]} delay={idx * 80}>
