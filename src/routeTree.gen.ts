@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as DepartmentsRouteImport } from './routes/departments'
+import { Route as DevTeamRouteImport } from './routes/dev-team'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as RulesRouteImport } from './routes/rules'
 import { Route as StaffRouteImport } from './routes/staff'
@@ -32,6 +33,11 @@ const AboutRoute = AboutRouteImport.update({
 const DepartmentsRoute = DepartmentsRouteImport.update({
   id: '/departments',
   path: '/departments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DevTeamRoute = DevTeamRouteImport.update({
+  id: '/dev-team',
+  path: '/dev-team',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeaturesRoute = FeaturesRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/departments': typeof DepartmentsRoute
+  '/dev-team': typeof DevTeamRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
   '/staff': typeof StaffRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/departments': typeof DepartmentsRoute
+  '/dev-team': typeof DevTeamRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
   '/staff': typeof StaffRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/departments': typeof DepartmentsRoute
+  '/dev-team': typeof DevTeamRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
   '/staff': typeof StaffRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/departments'
+    | '/dev-team'
     | '/features'
     | '/rules'
     | '/staff'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/departments'
+    | '/dev-team'
     | '/features'
     | '/rules'
     | '/staff'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/departments'
+    | '/dev-team'
     | '/features'
     | '/rules'
     | '/staff'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   DepartmentsRoute: typeof DepartmentsRoute
+  DevTeamRoute: typeof DevTeamRoute
   FeaturesRoute: typeof FeaturesRoute
   RulesRoute: typeof RulesRoute
   StaffRoute: typeof StaffRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/departments'
       fullPath: '/departments'
       preLoaderRoute: typeof DepartmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dev-team': {
+      id: '/dev-team'
+      path: '/dev-team'
+      fullPath: '/dev-team'
+      preLoaderRoute: typeof DevTeamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/features': {
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   DepartmentsRoute: DepartmentsRoute,
+  DevTeamRoute: DevTeamRoute,
   FeaturesRoute: FeaturesRoute,
   RulesRoute: RulesRoute,
   StaffRoute: StaffRoute,

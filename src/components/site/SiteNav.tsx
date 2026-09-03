@@ -13,6 +13,7 @@ import {
   Users,
   ShieldCheck,
   Eye,
+  Code2,
 } from "lucide-react";
 import logo from "@/assets/af-logo.png.asset.json";
 import { useLang, DISCORD_URL } from "@/lib/i18n";
@@ -24,6 +25,7 @@ const ICONS: Record<NavPath, typeof Home> = {
   "/team": Users,
   "/staff": ShieldCheck,
   "/supervision": Eye,
+  "/dev-team": Code2,
   "/features": Sparkles,
   "/departments": Shield,
   "/rules": ScrollText,
