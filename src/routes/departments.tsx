@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Shield, Ambulance, Flame, Users, Lock } from "lucide-react";
+import { Shield, Ambulance, Flame, Users, Lock, Scale } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { Reveal } from "@/components/site/Reveal";
 import { Section } from "@/components/site/Section";
