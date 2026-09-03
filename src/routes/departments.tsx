@@ -26,7 +26,7 @@ export const Route = createFileRoute("/departments")({
   component: DepartmentsPage,
 });
 
-const icons = [Shield, Ambulance, Flame, Users];
+const icons = [Shield, Ambulance, Flame, Users, Scale];
 
 function DepartmentsPage() {
   const { t, dict } = useLang();
