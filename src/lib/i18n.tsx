@@ -3,7 +3,20 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 export type Lang = "ar" | "en";
 
 const dict = {
-  nav: { home: ["الرئيسية", "Home"], about: ["عن السيرفر", "About"], features: ["المميزات", "Features"], rules: ["القوانين", "Rules"], departments: ["الأقسام", "Departments"], join: ["انضم إلينا", "Join"], team: ["الفريق", "Team"], store: ["المتجر", "Store"], staff: ["الطاقم الإداري", "Staff"], supervision: ["الطاقم الرقابي", "Supervision"] },
+  nav: { home: ["الرئيسية", "Home"], about: ["عن السيرفر", "About"], features: ["المميزات", "Features"], rules: ["القوانين", "Rules"], departments: ["الأقسام", "Departments"], join: ["انضم إلينا", "Join"], team: ["الفريق", "Team"], store: ["المتجر", "Store"], staff: ["الطاقم الإداري", "Staff"], supervision: ["الطاقم الرقابي", "Supervision"], devteam: ["الطاقم البرمجي", "Dev Team"] },
+  devTeam: {
+    k: ["الطاقم البرمجي", "Development team"],
+    t: ["البرمجة في Arab First RP", "Engineering at Arab First RP"],
+    p: [
+      "الطاقم البرمجي في Arab First RP يتكوّن من شخص واحد فقط، مسؤول عن كل الأنظمة والبوتات والموقع الرسمي.",
+      "The Arab First RP development team is a single person, responsible for every system, bot and the official website.",
+    ],
+    role: ["مسؤول البرمجة في السيرفر", "Head of development"],
+    certs: ["شهادة برمجية دولية", "International certifications"],
+    years: ["سنوات خبرة برمجية", "Years of experience"],
+    langs: ["لغة برمجية متقنة", "Programming languages mastered"],
+    langsTitle: ["اللغات البرمجية", "Programming languages"],
+  },
   staffPages: {
     loading: ["جارٍ التحميل...", "Loading..."],
     empty: ["لا يوجد أعضاء في هذه الرتبة حالياً.", "No members in this role right now."],
