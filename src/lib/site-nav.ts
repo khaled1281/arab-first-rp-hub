@@ -7,6 +7,7 @@ export const NAV_ORDER = [
   "/dev-team",
   "/features",
   "/departments",
+  "/safezones",
   "/rules",
   "/store",
 ] as const;
@@ -22,6 +23,7 @@ export const NAV_KEYS = {
   "/dev-team": "devteam",
   "/features": "features",
   "/departments": "departments",
+  "/safezones": "safezones",
   "/rules": "rules",
   "/store": "store",
 } as const;

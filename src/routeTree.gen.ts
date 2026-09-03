@@ -15,6 +15,7 @@ import { Route as DepartmentsRouteImport } from './routes/departments'
 import { Route as DevTeamRouteImport } from './routes/dev-team'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as RulesRouteImport } from './routes/rules'
+import { Route as SafezonesRouteImport } from './routes/safezones'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as SupervisionRouteImport } from './routes/supervision'
@@ -50,6 +51,11 @@ const RulesRoute = RulesRouteImport.update({
   path: '/rules',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SafezonesRoute = SafezonesRouteImport.update({
+  id: '/safezones',
+  path: '/safezones',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StaffRoute = StaffRouteImport.update({
   id: '/staff',
   path: '/staff',
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/dev-team': typeof DevTeamRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
+  '/safezones': typeof SafezonesRoute
   '/staff': typeof StaffRoute
   '/store': typeof StoreRoute
   '/supervision': typeof SupervisionRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
   '/dev-team': typeof DevTeamRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
+  '/safezones': typeof SafezonesRoute
   '/staff': typeof StaffRoute
   '/store': typeof StoreRoute
   '/supervision': typeof SupervisionRoute
@@ -103,6 +111,7 @@ export interface FileRoutesById {
   '/dev-team': typeof DevTeamRoute
   '/features': typeof FeaturesRoute
   '/rules': typeof RulesRoute
+  '/safezones': typeof SafezonesRoute
   '/staff': typeof StaffRoute
   '/store': typeof StoreRoute
   '/supervision': typeof SupervisionRoute
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/dev-team'
     | '/features'
     | '/rules'
+    | '/safezones'
     | '/staff'
     | '/store'
     | '/supervision'
@@ -129,6 +139,7 @@ export interface FileRouteTypes {
     | '/dev-team'
     | '/features'
     | '/rules'
+    | '/safezones'
     | '/staff'
     | '/store'
     | '/supervision'
@@ -141,6 +152,7 @@ export interface FileRouteTypes {
     | '/dev-team'
     | '/features'
     | '/rules'
+    | '/safezones'
     | '/staff'
     | '/store'
     | '/supervision'
@@ -154,6 +166,7 @@ export interface RootRouteChildren {
   DevTeamRoute: typeof DevTeamRoute
   FeaturesRoute: typeof FeaturesRoute
   RulesRoute: typeof RulesRoute
+  SafezonesRoute: typeof SafezonesRoute
   StaffRoute: typeof StaffRoute
   StoreRoute: typeof StoreRoute
   SupervisionRoute: typeof SupervisionRoute
@@ -204,6 +217,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RulesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/safezones': {
+      id: '/safezones'
+      path: '/safezones'
+      fullPath: '/safezones'
+      preLoaderRoute: typeof SafezonesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/staff': {
       id: '/staff'
       path: '/staff'
@@ -242,6 +262,7 @@ const rootRouteChildren: RootRouteChildren = {
   DevTeamRoute: DevTeamRoute,
   FeaturesRoute: FeaturesRoute,
   RulesRoute: RulesRoute,
+  SafezonesRoute: SafezonesRoute,
   StaffRoute: StaffRoute,
   StoreRoute: StoreRoute,
   SupervisionRoute: SupervisionRoute,
