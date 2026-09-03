@@ -58,10 +58,10 @@ const ADVISORS: Member[] = [
   { name: "f_77j", role: ["مستشار الأونر الثاني", "Second Owner Advisor"], icon: Star, id: "356995775185813514" },
 ];
 const ASSISTANT: Member = { name: "4s7b", role: ["مساعدة الأونر", "Owner Assistant"], icon: HeartHandshake, id: "525688320542638091" };
-const STAFF_ADVISOR: Member = {
+const CO_FOUNDER: Member = {
   name: "do.a1",
-  role: ["مستشار مسؤول الإدارة", "Staff Manager Advisor"],
-  icon: Star,
+  role: ["كو فاوندر", "Co-Founder"],
+  icon: Crown,
   id: "1291851466612674655",
 };
 const SENIOR: Member[] = [
@@ -186,7 +186,7 @@ function TeamPage() {
     ...ADVISORS,
     ASSISTANT,
     ...SENIOR,
-    STAFF_ADVISOR,
+    CO_FOUNDER,
     SENIOR_ASSISTANT,
   ]);
 
@@ -222,19 +222,19 @@ function TeamPage() {
 
         <Link />
 
+        <Reveal delay={280} className="mx-auto max-w-sm">
+          <Card m={CO_FOUNDER} avatarUrl={avatars[CO_FOUNDER.id!]} />
+        </Reveal>
+
+        <Link />
+
         <div className="grid gap-6 sm:grid-cols-2">
           {SENIOR.map((m, i) => (
-            <Reveal key={m.name} delay={280 + i * 80}>
+            <Reveal key={m.name} delay={320 + i * 80}>
               <Card m={m} avatarUrl={avatars[m.id!]} />
             </Reveal>
           ))}
         </div>
-
-        <Link />
-
-        <Reveal delay={340} className="mx-auto max-w-sm">
-          <Card m={STAFF_ADVISOR} avatarUrl={avatars[STAFF_ADVISOR.id!]} />
-        </Reveal>
 
         <Link />
 
