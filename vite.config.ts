@@ -19,8 +19,8 @@ function obfuscateClientBundle(): Plugin {
     enforce: "post",
     async renderChunk(code, chunk, _opts, meta) {
       // Only the browser build; skip SSR/server output.
-      // @ts-expect-error environment is available in Vite 6/7 plugin context
-      const envName: string | undefined = this.environment?.name;
+      const envName: string | undefined = (this as unknown as { environment?: { name?: string } })
+        .environment?.name;
       if (envName && envName !== "client") return null;
       if (!chunk.fileName.endsWith(".js")) return null;
       void meta;
