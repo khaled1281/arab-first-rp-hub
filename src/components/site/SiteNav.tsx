@@ -19,6 +19,7 @@ import {
 import logo from "@/assets/af-logo.png.asset.json";
 import { useLang, DISCORD_URL } from "@/lib/i18n";
 import { NAV_ORDER, NAV_KEYS, type NavPath } from "@/lib/site-nav";
+import { FlagSA, FlagGB } from "./FlagIcon";
 
 const ICONS: Record<NavPath, typeof Home> = {
   "/": Home,
