@@ -23,7 +23,6 @@ function obfuscateClientBundle(): Plugin {
         .environment?.name;
       if (envName && envName !== "client") return null;
       if (!chunk.fileName.endsWith(".js")) return null;
-      console.log("[obf]", envName, chunk.fileName);
       void meta;
 
       const { default: obfuscator } = await import("javascript-obfuscator");
