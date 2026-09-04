@@ -19,6 +19,7 @@ import {
 import logo from "@/assets/af-logo.png.asset.json";
 import { useLang, DISCORD_URL } from "@/lib/i18n";
 import { NAV_ORDER, NAV_KEYS, type NavPath } from "@/lib/site-nav";
+import { FlagSA, FlagGB } from "./FlagIcon";
 
 const ICONS: Record<NavPath, typeof Home> = {
   "/": Home,
@@ -106,9 +107,7 @@ export function SiteNav() {
             className="flex items-center gap-1.5 rounded-full border border-border px-3 py-2 text-xs font-bold text-foreground transition-colors hover:border-gold hover:text-gold"
             aria-label="Switch language"
           >
-            <span className="text-sm leading-none" aria-hidden="true">
-              {lang === "ar" ? "🇬🇧" : "🇸🇦"}
-            </span>
+            {lang === "ar" ? <FlagGB /> : <FlagSA />}
             <ArrowLeftRight className="h-3.5 w-3.5" />
             {lang === "ar" ? "EN" : "ع"}
           </button>
@@ -134,11 +133,11 @@ export function SiteNav() {
 
       {/* Mobile sheet */}
       <div
-        className={`overflow-hidden border-t border-border/50 bg-background/95 backdrop-blur-2xl transition-[max-height,opacity] duration-500 lg:hidden ${
-          open ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
+        className={`border-t border-border/50 bg-background/95 backdrop-blur-2xl transition-[max-height,opacity] duration-500 lg:hidden ${
+          open ? "max-h-[calc(100vh-4.5rem)] overflow-y-auto opacity-100" : "max-h-0 overflow-hidden opacity-0"
         }`}
       >
-        <div className="flex flex-col gap-1.5 px-5 py-4">
+        <div className="flex flex-col gap-1.5 px-5 py-4 pb-8">
           {NAV_ORDER.map((p, i) => {
             const Icon = ICONS[p];
             const active = isActive(p);
