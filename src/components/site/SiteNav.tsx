@@ -133,11 +133,11 @@ export function SiteNav() {
 
       {/* Mobile sheet */}
       <div
-        className={`overflow-hidden border-t border-border/50 bg-background/95 backdrop-blur-2xl transition-[max-height,opacity] duration-500 lg:hidden ${
-          open ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
+        className={`border-t border-border/50 bg-background/95 backdrop-blur-2xl transition-[max-height,opacity] duration-500 lg:hidden ${
+          open ? "max-h-[calc(100vh-4.5rem)] overflow-y-auto opacity-100" : "max-h-0 overflow-hidden opacity-0"
         }`}
       >
-        <div className="flex flex-col gap-1.5 px-5 py-4">
+        <div className="flex flex-col gap-1.5 px-5 py-4 pb-8">
           {NAV_ORDER.map((p, i) => {
             const Icon = ICONS[p];
             const active = isActive(p);
