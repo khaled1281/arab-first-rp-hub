@@ -30,7 +30,19 @@ export const Route = createFileRoute("/dev-team")({
 });
 
 const DEV_ID = "1327699415372398696";
-const LANGS = ["Java", "Python", "JavaScript", "HTML", "CSS", "Lua", "Go", "C+", "C", "C++", "Rust"];
+const LANGS: { name: string; emoji: string }[] = [
+  { name: "Java", emoji: "☕" },
+  { name: "Python", emoji: "🐍" },
+  { name: "JavaScript", emoji: "🟨" },
+  { name: "HTML", emoji: "🌐" },
+  { name: "CSS", emoji: "🎨" },
+  { name: "Lua", emoji: "🌙" },
+  { name: "Go", emoji: "🐹" },
+  { name: "C+", emoji: "🔧" },
+  { name: "C", emoji: "⚙️" },
+  { name: "C++", emoji: "⚡" },
+  { name: "Rust", emoji: "🦀" },
+];
 
 function DevTeamPage() {
   const { lang, t, dict } = useLang();
