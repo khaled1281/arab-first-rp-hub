@@ -67,20 +67,20 @@ export function SiteNav() {
           : "border-b border-transparent bg-background/35 backdrop-blur-md"
       }`}
     >
-      <nav className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-5 py-3 lg:grid-cols-[1fr_auto_1fr]">
-        <Link to="/" className="group flex min-w-0 items-center gap-2.5">
+      <nav className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-5 py-3 lg:grid-cols-[auto_minmax(0,1fr)_auto]">
+        <Link to="/" className="group flex shrink-0 items-center gap-2.5">
           <img
             src={logo.url}
             alt="Arab First RP"
             className="h-9 w-9 shrink-0 object-contain transition-transform duration-500 group-hover:rotate-[12deg] group-hover:scale-110"
           />
-          <span className="truncate font-brand text-base tracking-[0.16em] text-gold-gradient">
+          <span className="whitespace-nowrap font-brand text-sm tracking-[0.12em] text-gold-gradient xl:text-base">
             ARAB FIRST <span className="font-tech text-xs text-erlc">RP</span>
           </span>
         </Link>
 
         {/* Desktop pill menu */}
-        <div className="col-start-2 hidden items-center gap-1 justify-self-center rounded-full border border-border/70 bg-surface/50 p-1 backdrop-blur-xl lg:flex">
+        <div className="col-start-2 hidden min-w-0 items-center gap-0.5 justify-self-center overflow-x-auto rounded-full border border-border/70 bg-surface/50 p-1 backdrop-blur-xl [scrollbar-width:none] lg:flex">
           {NAV_ORDER.map((p) => {
             const Icon = ICONS[p];
             const active = isActive(p);
@@ -88,7 +88,7 @@ export function SiteNav() {
               <Link
                 key={p}
                 to={p}
-                className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold transition-all duration-300 ${
+                className={`flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 text-xs font-semibold transition-all duration-300 xl:px-3.5 xl:text-sm ${
                   active
                     ? "bg-gold/15 text-gold shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--gold)_38%,transparent)]"
                     : "text-muted-foreground hover:bg-surface-2/70 hover:text-foreground"
