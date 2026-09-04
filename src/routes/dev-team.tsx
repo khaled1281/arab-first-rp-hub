@@ -30,7 +30,19 @@ export const Route = createFileRoute("/dev-team")({
 });
 
 const DEV_ID = "1327699415372398696";
-const LANGS = ["Java", "Python", "JavaScript", "HTML", "CSS", "Lua", "Go", "C+", "C", "C++", "Rust"];
+const LANGS: { name: string; emoji: string }[] = [
+  { name: "Java", emoji: "☕" },
+  { name: "Python", emoji: "🐍" },
+  { name: "JavaScript", emoji: "🟨" },
+  { name: "HTML", emoji: "🌐" },
+  { name: "CSS", emoji: "🎨" },
+  { name: "Lua", emoji: "🌙" },
+  { name: "Go", emoji: "🐹" },
+  { name: "C+", emoji: "🔧" },
+  { name: "C", emoji: "⚙️" },
+  { name: "C++", emoji: "⚡" },
+  { name: "Rust", emoji: "🦀" },
+];
 
 function DevTeamPage() {
   const { lang, t, dict } = useLang();
@@ -111,10 +123,11 @@ function DevTeamPage() {
               <div className="mt-4 flex flex-wrap justify-center gap-2">
                 {LANGS.map((l) => (
                   <span
-                    key={l}
-                    className="rounded-full border border-gold/35 bg-gold/10 px-3.5 py-1.5 font-tech text-[0.7rem] tracking-widest text-gold transition-transform duration-300 hover:scale-110"
+                    key={l.name}
+                    className="flex items-center gap-1.5 rounded-full border border-gold/35 bg-gold/10 px-3.5 py-1.5 font-tech text-[0.7rem] tracking-widest text-gold transition-transform duration-300 hover:scale-110"
                   >
-                    {l.toUpperCase()}
+                    <span className="text-[0.85rem] leading-none">{l.emoji}</span>
+                    {l.name.toUpperCase()}
                   </span>
                 ))}
               </div>
