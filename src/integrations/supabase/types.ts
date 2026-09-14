@@ -14,6 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
+      activation_applications: {
+        Row: {
+          created_at: string
+          decided_at: string | null
+          decided_by: string | null
+          decided_by_username: string | null
+          discord_avatar_url: string | null
+          discord_created_at: string | null
+          discord_display_name: string | null
+          discord_id: string
+          discord_username: string
+          id: string
+          real_age: number
+          real_name: string
+          roblox_avatar_url: string | null
+          roblox_created_at: string | null
+          roblox_id: string | null
+          roblox_username: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          decided_by_username?: string | null
+          discord_avatar_url?: string | null
+          discord_created_at?: string | null
+          discord_display_name?: string | null
+          discord_id: string
+          discord_username: string
+          id?: string
+          real_age: number
+          real_name: string
+          roblox_avatar_url?: string | null
+          roblox_created_at?: string | null
+          roblox_id?: string | null
+          roblox_username: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          decided_at?: string | null
+          decided_by?: string | null
+          decided_by_username?: string | null
+          discord_avatar_url?: string | null
+          discord_created_at?: string | null
+          discord_display_name?: string | null
+          discord_id?: string
+          discord_username?: string
+          id?: string
+          real_age?: number
+          real_name?: string
+          roblox_avatar_url?: string | null
+          roblox_created_at?: string | null
+          roblox_id?: string | null
+          roblox_username?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       site_stats: {
         Row: {
           id: number
@@ -29,6 +92,60 @@ export type Database = {
           id?: number
           updated_at?: string
           visits?: number
+        }
+        Relationships: []
+      }
+      verify_codes: {
+        Row: {
+          attempts: number
+          code: string
+          created_at: string
+          discord_id: string
+          discord_username: string
+          expires_at: string
+          id: string
+          used: boolean
+        }
+        Insert: {
+          attempts?: number
+          code: string
+          created_at?: string
+          discord_id: string
+          discord_username: string
+          expires_at: string
+          id?: string
+          used?: boolean
+        }
+        Update: {
+          attempts?: number
+          code?: string
+          created_at?: string
+          discord_id?: string
+          discord_username?: string
+          expires_at?: string
+          id?: string
+          used?: boolean
+        }
+        Relationships: []
+      }
+      verify_sessions: {
+        Row: {
+          created_at: string
+          discord_id: string
+          expires_at: string
+          token: string
+        }
+        Insert: {
+          created_at?: string
+          discord_id: string
+          expires_at: string
+          token: string
+        }
+        Update: {
+          created_at?: string
+          discord_id?: string
+          expires_at?: string
+          token?: string
         }
         Relationships: []
       }
