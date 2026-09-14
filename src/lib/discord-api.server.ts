@@ -21,7 +21,7 @@ async function api<T>(
       Authorization: `Bot ${token()}`,
       "Content-Type": "application/json",
     },
-    body: init?.body === undefined ? undefined : JSON.stringify(init.body),
+    body: init?.body === undefined ? null : JSON.stringify(init.body),
   });
   let data: T | null = null;
   if (res.status !== 204) {
