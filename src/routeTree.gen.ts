@@ -20,6 +20,8 @@ import { Route as StaffRouteImport } from './routes/staff'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as SupervisionRouteImport } from './routes/supervision'
 import { Route as TeamRouteImport } from './routes/team'
+import { Route as VerifyRouteImport } from './routes/verify'
+import { Route as VerifyAdminRouteImport } from './routes/verify.admin'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +78,16 @@ const TeamRoute = TeamRouteImport.update({
   path: '/team',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VerifyRoute = VerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifyAdminRoute = VerifyAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => VerifyRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +101,8 @@ export interface FileRoutesByFullPath {
   '/store': typeof StoreRoute
   '/supervision': typeof SupervisionRoute
   '/team': typeof TeamRoute
+  '/verify': typeof VerifyRouteWithChildren
+  '/verify/admin': typeof VerifyAdminRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +116,8 @@ export interface FileRoutesByTo {
   '/store': typeof StoreRoute
   '/supervision': typeof SupervisionRoute
   '/team': typeof TeamRoute
+  '/verify': typeof VerifyRouteWithChildren
+  '/verify/admin': typeof VerifyAdminRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +132,8 @@ export interface FileRoutesById {
   '/store': typeof StoreRoute
   '/supervision': typeof SupervisionRoute
   '/team': typeof TeamRoute
+  '/verify': typeof VerifyRouteWithChildren
+  '/verify/admin': typeof VerifyAdminRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +149,8 @@ export interface FileRouteTypes {
     | '/store'
     | '/supervision'
     | '/team'
+    | '/verify'
+    | '/verify/admin'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +164,8 @@ export interface FileRouteTypes {
     | '/store'
     | '/supervision'
     | '/team'
+    | '/verify'
+    | '/verify/admin'
   id:
     | '__root__'
     | '/'
@@ -157,6 +179,8 @@ export interface FileRouteTypes {
     | '/store'
     | '/supervision'
     | '/team'
+    | '/verify'
+    | '/verify/admin'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +195,7 @@ export interface RootRouteChildren {
   StoreRoute: typeof StoreRoute
   SupervisionRoute: typeof SupervisionRoute
   TeamRoute: typeof TeamRoute
+  VerifyRoute: typeof VerifyRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -252,8 +277,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/verify': {
+      id: '/verify'
+      path: '/verify'
+      fullPath: '/verify'
+      preLoaderRoute: typeof VerifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify/admin': {
+      id: '/verify/admin'
+      path: '/admin'
+      fullPath: '/verify/admin'
+      preLoaderRoute: typeof VerifyAdminRouteImport
+      parentRoute: typeof VerifyRoute
+    }
   }
 }
+
+interface VerifyRouteChildren {
+  VerifyAdminRoute: typeof VerifyAdminRoute
+}
+
+const VerifyRouteChildren: VerifyRouteChildren = {
+  VerifyAdminRoute: VerifyAdminRoute,
+}
+
+const VerifyRouteWithChildren =
+  VerifyRoute._addFileChildren(VerifyRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -267,6 +317,7 @@ const rootRouteChildren: RootRouteChildren = {
   StoreRoute: StoreRoute,
   SupervisionRoute: SupervisionRoute,
   TeamRoute: TeamRoute,
+  VerifyRoute: VerifyRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
